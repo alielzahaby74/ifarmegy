@@ -16,6 +16,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     <link href="{{ asset('sw/sweetalert2.css') }}" rel="stylesheet">
 
 </head>
@@ -55,6 +56,10 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+                                    <a class="dropdown-item" href="{{ route('dash') }}">
+                                        Dashboard
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -78,10 +83,12 @@
     </div>
     <!-- Scripts -->
     <script src="{{ asset('sw/sweetalert2.js') }}"></script>
+    <script src="{{ asset('js/custom.js') }}"></script>
 <script>
 @if(session()->has('status'))
     swal.fire("{{ session('msg') }}","{{ session('msg2') }}","{{ session('type') }}");
 @endif
 </script>
+@stack("js")
 </body>
 </html>

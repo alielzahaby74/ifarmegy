@@ -30,13 +30,6 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="form-group autocomplete w-100">
-                                        <label for="cat">Category</label>
-                                        <input type="text" id="cat" class="form-control" />
-                                        <input name="cat_id" type="hidden" id="cat_id" class="form-control" />
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
                                     <div class="form-group">
                                         <label>
                                             Product Photo
@@ -57,10 +50,3 @@
     </div>
     </div>
 @endsection
-
-@push("js")
-    <script>
-        let cats = [ @foreach(\App\Models\Category::all() as $p) {name:"{{ $p->name }}",id:{{ $p->id }}}, @endforeach ];
-        autocomplete2(document.getElementById("cat"),cats,document.getElementById("cat_id"))
-    </script>
-@endpush

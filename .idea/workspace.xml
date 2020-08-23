@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4eb74296-473c-4b49-b9f7-9b2b8660a1c8" name="Default Changelist" comment="" />
+    <list default="true" id="4eb74296-473c-4b49-b9f7-9b2b8660a1c8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Category.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/products/add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/products/add.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/products/all.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/products/all.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
@@ -15,8 +25,13 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="composer.json" />
+        <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -132,15 +147,19 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/products" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/cats" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources/views/products" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/storage/app/public" />
       <recent name="$PROJECT_DIR$/app/Models" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views/cats" />
+      <recent name="$PROJECT_DIR$/resources/views/products" />
+      <recent name="$PROJECT_DIR$/resources/views" />
     </key>
   </component>
   <component name="RunManager">
@@ -157,7 +176,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1597954440463</updated>
-      <workItem from="1597954441783" duration="6681000" />
+      <workItem from="1597954441783" duration="7324000" />
+      <workItem from="1598221156202" duration="4949000" />
     </task>
     <servers />
   </component>
@@ -165,17 +185,25 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="420" y="113" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1598223004214">
+      <screen x="0" y="0" width="1366" height="723" />
+    </state>
+    <state x="420" y="113" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.723@0.0.1366.723" timestamp="1598223004214" />
+    <state x="470" y="113" key="FileChooserDialogImpl" timestamp="1598224284246">
+      <screen x="0" y="0" width="1366" height="723" />
+    </state>
+    <state x="470" y="113" key="FileChooserDialogImpl/0.0.1366.723@0.0.1366.723" timestamp="1598224284246" />
     <state x="504" y="278" key="NewPhpFileDialog" timestamp="1597957091092">
       <screen x="0" y="0" width="1366" height="723" />
     </state>
     <state x="504" y="278" key="NewPhpFileDialog/0.0.1366.723@0.0.1366.723" timestamp="1597957091092" />
-    <state x="347" y="155" key="run.anything.popup" timestamp="1597956547872">
+    <state x="347" y="155" key="run.anything.popup" timestamp="1598224859698">
       <screen x="0" y="0" width="1366" height="723" />
     </state>
-    <state x="347" y="155" key="run.anything.popup/0.0.1366.723@0.0.1366.723" timestamp="1597956547872" />
-    <state x="347" y="2" width="672" height="676" key="search.everywhere.popup" timestamp="1597964981894">
+    <state x="347" y="155" key="run.anything.popup/0.0.1366.723@0.0.1366.723" timestamp="1598224859698" />
+    <state x="347" y="2" width="672" height="676" key="search.everywhere.popup" timestamp="1598226032302">
       <screen x="0" y="0" width="1366" height="723" />
     </state>
-    <state x="347" y="2" width="672" height="676" key="search.everywhere.popup/0.0.1366.723@0.0.1366.723" timestamp="1597964981894" />
+    <state x="347" y="2" width="672" height="676" key="search.everywhere.popup/0.0.1366.723@0.0.1366.723" timestamp="1598226032302" />
   </component>
 </project>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -29,12 +30,20 @@ class ProductController extends Controller
             //"input_name"=>"rule"
             "item_name"=>"required",
             "item_price"=>"required",
+            "cat_id"=>"required",
+            "item_photo"=>"required|mimes:jpg,jpeg,png"
         ]);
+
+        $file  = Storage::disk('public')->putFileAs("product/", $request->file('item_photo'), time().".".$request->file('item_photo')->getClientOriginalName());
+        $url = Storage::disk('public')->url($file);
+
 
         // Storing into db
         Product::create([
             "name"=>$request->item_name,
-            "price"=>$request->item_price
+            "price"=>$request->item_price,
+            "photo"=>$url,
+            "category_id"=>$request->cat_id
         ]);
 
         // done storing
@@ -43,6 +52,28 @@ class ProductController extends Controller
         return redirect()->route('product.all')
             ->with(['status'=>true,"type"=>"success","msg"=>"Success Adding To DB","msg2"=>""]);
 
+    }
+
+    public function update(Request  $request,$id)
+    {
+        $request->validate([
+            "item_name"=>"required",
+            "item_price"=>"required",
+        ]);
+
+        $product = Product::find($id);
+        $product->name = $request->item_name;
+        $product->price = $request->item_price;
+        $product->save();
+        return redirect()->route('product.all')
+            ->with(['status'=>true,"type"=>"success","msg"=>"Success Editing the Item","msg2"=>""]);
+    }
+
+    public function delete($id)
+    {
+        Product::destroy($id);
+        return redirect()->route('product.all')
+            ->with(['status'=>true,"type"=>"success","msg"=>"Success Deleting The Item","msg2"=>""]);
     }
 
 }
