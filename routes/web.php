@@ -24,11 +24,16 @@ Route::middleware('auth')->prefix('dash')->group(function () {
         Route::get('/delete/{id}',"ProductController@delete")->name('product.delete');
 
         Route::get('/all',"ProductController@all")->name('product.all');
-        
+
         Route::post('/cart/add', "ProductController@addToCart",)->name('cart.add');
     });
 
-
+    Route::prefix('cart')->group(function () {
+        Route::get("/","CartManager@get")->name('cart.add');
+        Route::post("/add","CartManager@add")->name('cart.add');
+        Route::post("/remove","CartManager@remove")->name('cart.remove');
+        Route::post("/delete","CartManager@delete")->name('cart.delete');
+    });
 
 });
 Auth::routes();

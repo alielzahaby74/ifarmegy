@@ -57,7 +57,8 @@ class ProductController extends Controller
 
     public function editPage(Request $request, $id)
     {
-        return view($this->view . 'edit');
+        $item = Product::findOrFail($id);
+        return view($this->view . 'edit',compact('item'));
     }
     public function update(Request  $request,$id)
     {
@@ -86,14 +87,4 @@ class ProductController extends Controller
         ->with(['status'=>true,"type"=>"success","msg"=>"Success Deleting The Item","msg2"=>""]);
     }
 
-    public function addToCart(Request $request)
-    {
-        $id = $request['id'];
-        $name = $request['name'];
-        $price = $request['price'];
-        $quantity = $request->item_quantity;
-        $cartItem = Cart::add($id, $name, $price, $quantity);
-        return redirect()->route('product.all')
-            ->with(['status'=>true,"type"=>"success","msg"=>"Success Adding the Item To The Cart","msg2"=>""]);
-    }
 }

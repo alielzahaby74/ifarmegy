@@ -10,7 +10,7 @@
                     <div class="card-header">Add product</div>
                     <div class="card-body">
                         <form enctype="multipart/form-data" method="post"
-                              action="{{ route('product.create') }}">
+                              action="{{ route('product.update',$item->id) }}">
                             @csrf
                             <div class="row">
                                 <div class="col-md-12">
@@ -18,7 +18,7 @@
                                         <label>
                                             Product Name
                                         </label>
-                                        <input name="item_name" type="text" class="form-control">
+                                        <input required value="{{$item->name}}" name="item_name" type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -26,7 +26,14 @@
                                         <label>
                                             Product Price
                                         </label>
-                                        <input name="item_price" step="any" type="number" class="form-control">
+                                        <input required value="{{$item->price}}" name="item_price" step="any" type="number" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group autocomplete w-100">
+                                        <label for="cat">Category</label>
+                                        <input type="text" id="cat" class="form-control" />
+                                        <input required value="{{$item->category_id}}" name="cat_id" type="hidden" id="cat_id" class="form-control" />
                                     </div>
                                 </div>
                                 <div class="col-md-12">
