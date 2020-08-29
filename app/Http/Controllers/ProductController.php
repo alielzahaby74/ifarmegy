@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Melihovv\ShoppingCart\Facades\ShoppingCart as Cart;
 
 class ProductController extends Controller
 {
@@ -35,9 +36,9 @@ class ProductController extends Controller
         ]);
 
         $file  = Storage::disk('public')->putFileAs("product/", $request->file('item_photo'), time().".".$request->file('item_photo')->getClientOriginalName());
-        $url = Storage::disk('public')->url($file);
-
-
+        //$url = Storage::disk('public')->url($file);
+        $url = "storage/$file";
+        //dd($url, $file);
         // Storing into db
         Product::create([
             "name"=>$request->item_name,
@@ -54,6 +55,10 @@ class ProductController extends Controller
 
     }
 
+    public function editPage(Request $request, $id)
+    {
+        return view($this->view . 'edit');
+    }
     public function update(Request  $request,$id)
     {
         $request->validate([
@@ -62,6 +67,7 @@ class ProductController extends Controller
         ]);
 
         $product = Product::find($id);
+
         $product->name = $request->item_name;
         $product->price = $request->item_price;
         $product->save();
@@ -71,9 +77,23 @@ class ProductController extends Controller
 
     public function delete($id)
     {
+        if(!auth()->user()->admin)
+        {
+            abort(403);
+        }
         Product::destroy($id);
         return redirect()->route('product.all')
-            ->with(['status'=>true,"type"=>"success","msg"=>"Success Deleting The Item","msg2"=>""]);
+        ->with(['status'=>true,"type"=>"success","msg"=>"Success Deleting The Item","msg2"=>""]);
     }
 
+    public function addToCart(Request $request)
+    {
+        $id = $request['id'];
+        $name = $request['name'];
+        $price = $request['price'];
+        $quantity = $request->item_quantity;
+        $cartItem = Cart::add($id, $name, $price, $quantity);
+        return redirect()->route('product.all')
+            ->with(['status'=>true,"type"=>"success","msg"=>"Success Adding the Item To The Cart","msg2"=>""]);
+    }
 }
