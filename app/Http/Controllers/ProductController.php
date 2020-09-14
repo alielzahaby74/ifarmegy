@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -14,8 +15,9 @@ class ProductController extends Controller
     public function all()
     {
         $items = Product::all();
+        $categories = Category::all();
 //        dd(compact(['items','']));
-        return view($this->view.'all',compact('items'));
+        return view($this->view.'all',['items' => $items, 'categories' => $categories]);
 //        return view($this->view.'all',["items"=>$items]);
     }
 
@@ -57,7 +59,8 @@ class ProductController extends Controller
 
     public function editPage(Request $request, $id)
     {
-        return view($this->view . 'edit');
+        $item = Product::findOrFail($id);
+        return view($this->view . 'edit',compact('item'));
     }
     public function update(Request  $request,$id)
     {
@@ -70,6 +73,10 @@ class ProductController extends Controller
 
         $product->name = $request->item_name;
         $product->price = $request->item_price;
+        /*$product->category_id = $request->cat_id;
+        $file  = Storage::disk('public')->putFileAs("product/", $request->file('item_photo'), time().".".$request->file('item_photo')->getClientOriginalName());
+        $url = "storage/$file";
+        $product->photo = $url;*/
         $product->save();
         return redirect()->route('product.all')
             ->with(['status'=>true,"type"=>"success","msg"=>"Success Editing the Item","msg2"=>""]);
@@ -77,10 +84,6 @@ class ProductController extends Controller
 
     public function delete($id)
     {
-        if(!auth()->user()->admin)
-        {
-            abort(403);
-        }
         Product::destroy($id);
         return redirect()->route('product.all')
         ->with(['status'=>true,"type"=>"success","msg"=>"Success Deleting The Item","msg2"=>""]);

@@ -11,8 +11,10 @@
                     <div class="">
                         <a class="btn btn-primary btn-sm"
                            href="{{ route('product.all') }}">Products</a>
+                        @if(auth()->user()->admin)
                         <a class="btn btn-primary btn-sm"
                            href="{{ route('category.all') }}">Categories</a>
+                        @endif
                     </div>
                 </div>
             </div>

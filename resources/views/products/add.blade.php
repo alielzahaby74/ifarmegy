@@ -9,7 +9,7 @@
                 <div class="card">
                     <div class="card-header">Add product</div>
                     <div class="card-body">
-                        <form enctype="multipart/form-data" method="post"
+                        <form autocomplete="" enctype="multipart/form-data" method="post"
                               action="{{ route('product.create') }}">
                             @csrf
                             <div class="row">
@@ -32,7 +32,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group autocomplete w-100">
                                         <label for="cat">Category</label>
-                                        <input type="text" id="cat" class="form-control" />
+                                        <input type="text" autocomplete="off" id="cat" class="form-control" />
                                         <input name="cat_id" type="hidden" id="cat_id" class="form-control" />
                                     </div>
                                 </div>

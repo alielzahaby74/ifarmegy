@@ -42,4 +42,10 @@ class CategoryController extends Controller
         return view($this->view."linked",compact('cat'));
     }
 
+    public function delete ($id)
+    {
+        /*Category::destroy($id);
+        return redirect()->route('product.all')
+        ->with(['status'=>true, "type"=>"success", "msg"=>"Success Deleting The category", "msg2"=>""]);*/
+    }
 }
