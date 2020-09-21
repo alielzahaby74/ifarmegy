@@ -19,50 +19,51 @@
                     <div class="card-body">
                         <div class="row">
                             @foreach($items as $item)
-                                <div class="col-md-4 col-sm-6 col-6 text-center" style="margin-bottom: 10px" id = "data_{{$item->id}}">
-                                    <div class="card">
-                                        <div>
-                                        <img class="img-thumbnail" style="height: 250px" src="{{ asset($item->photo) }}" alt="">
-                                        </div>
-                                        <div class="card-body">
-                                            <h3>{{ $item->name }}</h3>
-                                            <h5>
-                                                {{ $item->category()->first()->name }}
-                                                <span class="text-danger">
-                                                    {{ $item->price."EGP" }}
-                                                </span>
-                                            </h5>
-                                        </div>
-                                        @if(auth()->user()->admin == true)
-                                            <div class="actions card-body pt-0 mt-0 text-center">
-                                                <a class="btn btn-danger btn-sm mdi mdi-trash-can"
-                                                href="{{ route('product.delete', $item->id) }}"></a>
-                                                <a class="btn btn-secondary mr-2 btn-sm mdi mdi-database-edit"
-                                                href="{{ route('product.edit', $item->id)}}"></a>
+                                @if($item->category_id == $id)
+                                    <div class="col-md-4 col-sm-6 col-6 text-center" style="margin-bottom: 10px" id = "data_{{$item->id}}">
+                                        <div class="card">
+                                            <div>
+                                            <img class="img-thumbnail" style="height: 250px" src="{{ asset($item->photo) }}" alt="">
                                             </div>
-                                        @endif
-                                        <form class="addToCartForm card-body mt-0 pt-0" 
-                                        action="{{route('cart.add')}}" id="from{{$item->id}}">
-                                            @csrf
-                                            <div class="d-flex justify-content-center">
-                                                <input type="hidden" name="item_id" value="{{$item->id}}">
-                                                <input type="hidden" name="step" value="{{$item->step}}">
-                                                <button class="inc-num btn btn-primary btn-sm" type="submit" id = "{{$item->id}}">
-                                                    +
-                                                </button>
-                                                
-                                                <input min="0.0" step="{{$item->step}}" type="number" placeholder="{{$item->unit}}"
-                                                    name="qty"
-                                                    class="qty form-control w-50">
-                                                
-                                                    <button class="btn btn-primary btn-sm" type="submit">
-                                                    <!--<span class="mdi mdi-cart-plus mdi-24px"></span>-->
-                                                    -
-                                                </button>
+                                            <div class="card-body">
+                                                <h3>{{ $item->name }}</h3>
+                                                <h5>
+                                                    <span class="text-danger">
+                                                        {{ $item->price."EGP" }}
+                                                    </span>
+                                                </h5>
                                             </div>
-                                        </form>
+                                            @if(auth()->user()->admin == true)
+                                                <div class="actions card-body pt-0 mt-0 text-center">
+                                                    <a class="btn btn-danger btn-sm mdi mdi-trash-can"
+                                                    href="{{ route('product.delete', $item->id) }}"></a>
+                                                    <a class="btn btn-secondary mr-2 btn-sm mdi mdi-database-edit"
+                                                    href="{{ route('product.edit', $item->id)}}"></a>
+                                                </div>
+                                            @endif
+                                            <form method = "POST" class="addToCartForm card-body mt-0 pt-0" 
+                                            action="{{route('cart.add')}}" id="from{{$item->id}}">
+                                                @csrf
+                                                <div class="d-flex justify-content-center">
+                                                    <input type="hidden" name="item_id" value="{{$item->id}}">
+                                                    <input type="hidden" name="step" value="{{$item->step}}">
+                                                    <button class="inc-num btn btn-primary btn-sm" type="submit" id = "{{$item->id}}">
+                                                        +
+                                                    </button>
+                                                    
+                                                    <input min="0.0" step="{{$item->step}}" type="number" placeholder="{{$item->unit}}"
+                                                        name="qty"
+                                                        class="qty form-control w-50">
+                                                    
+                                                        <button class="btn btn-primary btn-sm" type="submit">
+                                                        <!--<span class="mdi mdi-cart-plus mdi-24px"></span>-->
+                                                        -
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
                                     </div>
-                                </div>
+                                @endif
                             @endforeach
                             <a class = "btn btn-success btn-lg btn-block fixed-bottom" href="{{route('cart.all')}}">Check Out</a>
                         </div>

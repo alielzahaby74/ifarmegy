@@ -18,8 +18,9 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->double("price");
             $table->string('photo')->default("https://via.placeholder.com/175");
+            $table->string('unit');
+            $table->double('step');
             $table->bigInteger('category_id')->unsigned();
-            $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
         });
     }

@@ -21,6 +21,12 @@ class ProductController extends Controller
 //        return view($this->view.'all',["items"=>$items]);
     }
 
+    public function getCatList($id)
+    {
+        $items = Product::all();
+        return view($this->view.'category', ['id' => $id, 'items' => $items]);
+    }
+
     public function addPage()
     {
         return view($this->view.'add');
@@ -34,6 +40,8 @@ class ProductController extends Controller
             "item_name"=>"required",
             "item_price"=>"required",
             "cat_id"=>"required",
+            "item_unit"=>"required",
+            "item_step"=>"required",
             "item_photo"=>"required|mimes:jpg,jpeg,png"
         ]);
 
@@ -45,6 +53,8 @@ class ProductController extends Controller
         Product::create([
             "name"=>$request->item_name,
             "price"=>$request->item_price,
+            "unit"=>$request->item_unit,
+            "step"=>$request->item_step,
             "photo"=>$url,
             "category_id"=>$request->cat_id
         ]);
@@ -87,5 +97,11 @@ class ProductController extends Controller
         Product::destroy($id);
         return redirect()->route('product.all')
         ->with(['status'=>true,"type"=>"success","msg"=>"Success Deleting The Item","msg2"=>""]);
+    }
+
+    public function addQty(Request $request, $step)
+    {
+        $request->qty += $step;
+        return redirect()->back();
     }
 }

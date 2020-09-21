@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
@@ -25,10 +26,15 @@ class CategoryController extends Controller
     {
         $request->validate([
             "item_name"=>"required",
+            "item_photo"=>"required",
         ]);
+        
+        $file  = Storage::disk('public')->putFileAs("product/", $request->file('item_photo'), time().".".$request->file('item_photo')->getClientOriginalName());
+        $url = "storage/$file";
 
         Category::create([
-            "name"=>$request->item_name
+            "name"=>$request->item_name,
+            "photo" => $url,
         ]);
 
         return redirect()->route('category.all')
@@ -44,8 +50,8 @@ class CategoryController extends Controller
 
     public function delete ($id)
     {
-        /*Category::destroy($id);
+        Category::destroy($id);
         return redirect()->route('product.all')
-        ->with(['status'=>true, "type"=>"success", "msg"=>"Success Deleting The category", "msg2"=>""]);*/
+        ->with(['status'=>true, "type"=>"success", "msg"=>"Success Deleting The category", "msg2"=>""]);
     }
 }

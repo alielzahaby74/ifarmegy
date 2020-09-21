@@ -48,11 +48,11 @@ class CartManager extends Controller
                 "id" => $item->id,
                 "name"=>$item->name,
                 "item_price"=>$item->price,
-                "qty"=> (int) $request->qty,
+                "qty"=> (float) $request->qty,
                 "photo"=>asset($item->photo),
                 "total"=>$item->price*$request->qty
             ];
-            session()->push('cart',$cart_item_obj);
+            session()->push('cart', $cart_item_obj);
             return $cart_item_obj+['isNew'=>0];
         endif;
     }

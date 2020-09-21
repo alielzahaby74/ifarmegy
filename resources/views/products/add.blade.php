@@ -30,6 +30,22 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>
+                                            Product unit
+                                        </label>
+                                        <input name="item_unit" step="any" type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>
+                                            Product step
+                                        </label>
+                                        <input name="item_step" step="any" type="number" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
                                     <div class="form-group autocomplete w-100">
                                         <label for="cat">Category</label>
                                         <input type="text" autocomplete="off" id="cat" class="form-control" />

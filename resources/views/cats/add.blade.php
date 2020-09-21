@@ -22,6 +22,15 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>
+                                            Category photo
+                                        </label>
+                                        <br>
+                                        <input name="item_photo" type="file" class="">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
                                     <button class="btn btn-primary w-100">Save</button>
                                 </div>
                             </div>

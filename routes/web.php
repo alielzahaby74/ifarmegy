@@ -7,7 +7,7 @@ Route::view('/',"home");
 Route::middleware('auth')->prefix('dash')->group(function () {
 
     Route::view('/',"home");
-    Route::view('/',"dash")->name('dash');
+    Route::get('/',"DashController@index")->name('dash');
     Route::middleware('admin')->group(function ()
     {
         Route::prefix('/categories')->group(function () {
@@ -24,11 +24,13 @@ Route::middleware('auth')->prefix('dash')->group(function () {
         {
             Route::get('/add',"ProductController@addPage")->name('product.add');
             Route::post('/add',"ProductController@create")->name('product.create');
-
+            
             Route::get('/update/{id}',"ProductController@editPage")->name('product.edit');
             Route::post('/update/{id}',"ProductController@update")->name('product.update');
             Route::get('/delete/{id}',"ProductController@delete")->name('product.delete');
         });
+        Route::post('/cat/{id}', "ProductController@getCatList")->name('products.getList');
+        Route::view('/cat/list', 'products.category');
 
         Route::get('/all',"ProductController@all")->name('product.all');
 
