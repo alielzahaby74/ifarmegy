@@ -120,7 +120,7 @@
                                             </p>
                                         </div>
                                         <div class="col-md-2">
-                                            <a class="btn btn-sm btn-danger mdi mdi-trash-can" 
+                                            <a class="delete_btn btn btn-sm btn-danger mdi mdi-trash-can" 
                                         href = "{{ route('cart.remove')}}/${res.id}"></a>
                                         </div>
                                     </div>

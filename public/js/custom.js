@@ -97,4 +97,33 @@ function autocomplete2(inp, arr,targetE) {
     });
 }
 
+$(document).ready(function(e){
+    
+    $('.inc-num').on('click', function(e){
+        e.preventDefault();
+        //console.log($(this).parent().find('input[type="number"]').val().length == 0);
+        if($(this).parent().find('input[name="qty"]')[0].value.length == 0)
+        {
+            $(this).parent().find('input[name="qty"]')[0].value = 0;
+        }
+        var step = parseFloat($(this).parent().find('input[name="step"]').val());
+        var oldVal = parseFloat($(this).parent().find('input[name="qty"]')[0].value);
+        var newVal = oldVal + step;
 
+        //console.log(oldVal);
+        console.log($(this).parent().find('input[name="qty"]')[0]);
+        //console.log(step);
+        $(this).parent().find('input[name="qty"]')[0].value = newVal;
+        //$(this).parent().parent().submit();
+    });
+
+    $('.delete_btn').on('click', function(e){
+        e.preventDefault();
+        $(this).parent().parent().remove();
+        $.ajax({
+            url: $(this).attr('href'),
+        });
+    });
+
+    
+});

@@ -28,8 +28,10 @@ Route::middleware('auth')->prefix('dash')->group(function () {
             Route::get('/update/{id}',"ProductController@editPage")->name('product.edit');
             Route::post('/update/{id}',"ProductController@update")->name('product.update');
             Route::get('/delete/{id}',"ProductController@delete")->name('product.delete');
+
+            Route::get('/orders', 'ProductController@orders')->name('product.orders');
         });
-        Route::post('/cat/{id}', "ProductController@getCatList")->name('products.getList');
+        Route::get('/cat/{id}', "ProductController@getCatList")->name('products.getList');
         Route::view('/cat/list', 'products.category');
 
         Route::get('/all',"ProductController@all")->name('product.all');
@@ -42,7 +44,7 @@ Route::middleware('auth')->prefix('dash')->group(function () {
         Route::post("/add","CartManager@add")->name('cart.add');
         Route::get("/remove/{id?}","CartManager@remove")->name('cart.remove');
         Route::get("/delete","CartManager@delete")->name('cart.delete');
-        Route::get("/sendMail", "CartManager@sendMail")->name('cart.sendMail');
+        Route::get("/sendOrder", "CartManager@sendOrder")->name('cart.sendOrder');
     });
 
 });

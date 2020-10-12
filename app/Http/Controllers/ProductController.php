@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Order;
+use App\Order_item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Melihovv\ShoppingCart\Facades\ShoppingCart as Cart;
@@ -62,7 +64,7 @@ class ProductController extends Controller
         // done storing
         // redirecting to all items page with a SUCCESS MSG
 
-        return redirect()->route('product.all')
+        return redirect()->route('dash')
             ->with(['status'=>true,"type"=>"success","msg"=>"Success Adding To DB","msg2"=>""]);
 
     }
@@ -77,31 +79,40 @@ class ProductController extends Controller
         $request->validate([
             "item_name"=>"required",
             "item_price"=>"required",
+            "cat_id"=>"required",
+            
         ]);
 
         $product = Product::find($id);
 
         $product->name = $request->item_name;
         $product->price = $request->item_price;
-        /*$product->category_id = $request->cat_id;
+        $product->category_id = $request->cat_id;
         $file  = Storage::disk('public')->putFileAs("product/", $request->file('item_photo'), time().".".$request->file('item_photo')->getClientOriginalName());
         $url = "storage/$file";
-        $product->photo = $url;*/
+        $product->photo = $url;
         $product->save();
-        return redirect()->route('product.all')
+        return redirect()->route('dash')
             ->with(['status'=>true,"type"=>"success","msg"=>"Success Editing the Item","msg2"=>""]);
     }
 
     public function delete($id)
     {
         Product::destroy($id);
-        return redirect()->route('product.all')
+        return redirect()->route('dash')
         ->with(['status'=>true,"type"=>"success","msg"=>"Success Deleting The Item","msg2"=>""]);
     }
 
-    public function addQty(Request $request, $step)
+    /*public function addQty(Request $request, $step)
     {
         $request->qty += $step;
         return redirect()->back();
+    }*/
+
+    public function orders()
+    {
+        $orders = Order::all();
+        $items = Order_item::all();
+        return view($this->view . "orders", ['orders' => $orders, 'items' => $items]);
     }
 }

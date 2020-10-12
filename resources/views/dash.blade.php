@@ -5,30 +5,27 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">
-                    {{ __('Dashboard') }}</div>
+                <div class="card-header" style="background-color: #3f51b5; color: #fff">
+                    {{ __('Dashboard') }}
+                    @if(auth()->user()->admin)
+                    <a class="btn btn-primary btn-sm"
+                       href="{{ route('product.all') }}">Products</a>
+
+                    <a class="btn btn-primary btn-sm"
+                       href="{{ route('category.all') }}">Categories</a>
+                    @endif
+                </div>
                 <div class="card-body">
                     <div class="">
                         @foreach ($cats as $cat)
-                            <form method = "POST" action="{{route('products.getList', $cat->id)}}">
-                                @csrf
-                                <div class="card">
-                                    <input type="image" class="card-img-top submit" style="height: 200px" src="{{$cat->photo}}" alt="Card image cap">
-                                    <div class="card-body">
-                                    <h5 class="card-title text-center">{{$cat->name}}</h5>
-                                    </div>
-                                </div>
-                            </form>
+                            <div class="view overlay z-depth-1-half mb-2">
+                            <img src="{{asset($cat->photo)}}" class="img-fluid" alt="">
+                                <a href="{{route('products.getList', $cat->id)}}">
+                                    <div class="position-absolute align-middle"  style="color: #FFF;z-index: 2;top: 30%;text-align: center;width:100%;font-size: 100px;"> {{$cat->name}}</div>
+                                  <div class="mask rgba-white-light"></div>
+                                </a>
+                              </div>
                         @endforeach
-                        @if(auth()->user()->admin)
-                        <a class="btn btn-primary btn-sm"
-                           href="{{ route('product.all') }}">Products</a>
-                        @if(auth()->user()->admin)
-
-                        <a class="btn btn-primary btn-sm"
-                           href="{{ route('category.all') }}">Categories</a>
-                        @endif
-                        @endif
                     </div>
                 </div>
             </div>

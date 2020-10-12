@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Order;
+use App\Order_item;
 use Illuminate\Http\Client\Request as ClientRequest;
 use Illuminate\Http\Request;
 use App\User;
@@ -41,7 +43,9 @@ class CartManager extends Controller
             $curArr = array_filter(session('cart'),function ($i) use ($request) {
                 return $i['id'] == $request->item_id;
             });
-            return $curArr[0] + ['isNew' => $isNew];
+            $curArr = reset($curArr);
+            //dump($curArr);
+            return $curArr + ['isNew' => $isNew];
             //return $curArr[0]+['isNew'=>$isNew];
         else:
             $cart_item_obj = [
@@ -70,7 +74,7 @@ class CartManager extends Controller
             session()->put('cart', $cart);
         else
             $request->session()->forget('cart');
-        return redirect()->back();
+        //return redirect()->back();
     }
 
     public function delete(Request $request)
@@ -82,22 +86,35 @@ class CartManager extends Controller
         return redirect()->back();
     }
 
-    public function sendMail(Request $request)
+    public function sendOrder(Request $request)
     {
         $user = auth()->user();
-
+        /*
         $user->num_of_buys++;
         $user->save();
-        
-        $details = [
+        */ 
+        $order = Order::create([
             'title' => 'New Order',
-            'body' => 'test',
-            'user' => $user,
-            'cart' => session()->get('cart'),
-        ];
-        \Mail::to('hesham11592@gmail.com')->send(new \App\Mail\ifruitMail($details));
+            'description' => '',
+            'user_id' => $user->id,
+            'user_name' => $user->name,
+            'user_address' => $user->address,
+            'phone_number' => $user->phone_number
+        ]);
+        foreach(session('cart') as $item)
+        {
+            Order_item::create([
+                'user_id' => $user->id,
+                'order_id'=> $order->id,
+                'item_id' => $item['id'],
+                'qty' => $item['qty'],
+                'item_name' => $item['name'],
+                'item_price' => $item['item_price'],
+                'item_total' => $item['total']
+            ]);
+        }
         $request->session()->forget('cart');
-        return redirect()->route('product.all')
+        return redirect()->route('dash')
         ->with(['status'=>true,"type"=>"success","msg"=>"your order has been sent!","msg2"=>"", 'user' => $user]);
     }
 }
