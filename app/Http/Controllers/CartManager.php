@@ -15,7 +15,15 @@ class CartManager extends Controller
 
     public function all()
     {
-        return view($this->view .'all');
+        $total_cost = 0;
+        if(session()->has('cart'))
+        {
+                foreach(session('cart') as $items)
+                {
+                    $total_cost += $items['total'];
+                }
+        }
+        return view($this->view .'all', ['total_cost' => $total_cost]);
     }
     public function add(Request $request)
     {
@@ -34,8 +42,8 @@ class CartManager extends Controller
         if ($isNew>0):
             $cart = array_map(function ($i) use($request,$item) {
                 if ($i['id']==$request->item_id){
-                    $i['qty'] = $i['qty']+$request->qty;
-                    $i['total'] = $item->price*$i['qty'];
+                    $i['qty'] = $i['qty'] + $request->qty;
+                    $i['total'] = $item->price * $i['qty'];
                 }
                 return $i;
             },session('cart'));
@@ -93,6 +101,7 @@ class CartManager extends Controller
         $user->num_of_buys++;
         $user->save();
         */ 
+        $total_cost = 0;
         $order = Order::create([
             'title' => 'New Order',
             'description' => '',
@@ -103,6 +112,7 @@ class CartManager extends Controller
         ]);
         foreach(session('cart') as $item)
         {
+            $total_cost += $item['total'];
             Order_item::create([
                 'user_id' => $user->id,
                 'order_id'=> $order->id,
@@ -113,6 +123,8 @@ class CartManager extends Controller
                 'item_total' => $item['total']
             ]);
         }
+        $order->total_cost = $total_cost;
+        $order->save();
         $request->session()->forget('cart');
         return redirect()->route('dash')
         ->with(['status'=>true,"type"=>"success","msg"=>"your order has been sent!","msg2"=>"", 'user' => $user]);

@@ -10,7 +10,7 @@
                     <div class="card-header d-flex justify-content-between">
                         All products
                         @if(auth()->user()->admin == true)
-                            <a class="btn btn-primary btn-sm" href="{{ route('product.add') }}">Add Product</a>
+                            <a class="btn btn-primary btn-sm h2" href="{{ route('product.add') }}">أضف منتج</a>
                         @endif
                     </div>
                     @php
@@ -41,26 +41,30 @@
                                                     href="{{ route('product.edit', $item->id)}}"></a>
                                                 </div>
                                             @endif
+                                            
+                                            <div class="badge badge-success w-25 m-auto">{{$item->unit}}</div>
+                                            <br>
                                             <form method = "POST" class="addToCartForm card-body mt-0 pt-0" 
                                             action="{{route('cart.add')}}" id="from{{$item->id}}">
                                                 @csrf
                                                 <div class="d-flex justify-content-center">
                                                     <input type="hidden" name="item_id" value="{{$item->id}}">
                                                     <input type="hidden" name="step" value="{{$item->step}}">
+                                                    
                                                     <button class="inc-num btn btn-primary btn-sm" id = "{{$item->id}}">
                                                         +
                                                     </button>
-                                                    
-                                                    <input min="0.0" step="{{$item->step}}" type="number" placeholder="{{$item->unit}}"
+                                                    <input min="0.0" step="{{$item->step}}" type="number"
                                                         name="qty"
                                                         class="qty form-control w-50">
                                                     
-                                                    <button class="btn btn-primary btn-sm">
-                                                        <!--<span class="mdi mdi-cart-plus mdi-24px"></span>-->
-                                                        -
-                                                    </button>
-                                                </div>
-                                                <button class = "mdi mdi-cart-plus mdi-24px btn btn-primary"type="submit"></button>
+                                                        
+                                                        <button class="btn btn-primary btn-sm">
+                                                            <!--<span class="mdi mdi-cart-plus mdi-24px"></span>-->
+                                                            -
+                                                        </button>
+                                                    </div>
+                                                    <button class = "mdi mdi-cart-plus mdi-24px btn btn-primary"type="submit"></button>
                                             </form>
                                         </div>
                                     </div>
@@ -96,7 +100,7 @@
                     let qty = parseInt($("#cart_item_qty").text()); ++qty;
                     $("#cart_item_qty").text(qty);
                     $("#cart-list").append(`
-                            <div class="row px-2 d-flex align-items-center justify-content-between" id = "data_${res.id}">
+                            <div class="row px-2 d-flex align-items-center justify-content-between" name = "data_${res.id}" id = "data_${res.id}">
                                 <div class="col-md-3">
                                     <img class="img-fluid" src="${res.photo}" alt="">
                                 </div>
@@ -109,7 +113,6 @@
                                 <div class="col-md-2">
                                     <a class="cart_delete_btn btn btn-sm btn-danger mdi mdi-trash-can" 
                                 href = "{{ route('cart.remove')}}/${res.id}"></a>
-                               
                                 </div>
                             </div>
                             `);

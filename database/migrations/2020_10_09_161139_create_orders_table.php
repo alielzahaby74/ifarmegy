@@ -19,6 +19,7 @@ class CreateOrdersTable extends Migration
             $table->text('description');
             $table->bigInteger('user_id')->unsigned();
             $table->string('user_name');
+            $table->integer('total_cost')->nullable();
             $table->string('user_address');
             $table->string('phone_number');
             $table->timestamps();

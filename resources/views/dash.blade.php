@@ -9,10 +9,10 @@
                     {{ __('Dashboard') }}
                     @if(auth()->user()->admin)
                     <a class="btn btn-primary btn-sm"
-                       href="{{ route('product.all') }}">Products</a>
+                       href="{{ route('product.all') }}">المنتجات</a>
 
                     <a class="btn btn-primary btn-sm"
-                       href="{{ route('category.all') }}">Categories</a>
+                       href="{{ route('category.all') }}">الأنواع</a>
                     @endif
                 </div>
                 <div class="card-body">

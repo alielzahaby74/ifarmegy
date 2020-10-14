@@ -28,6 +28,8 @@
     <!-- Your custom styles (optional) -->
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
 
+
+
 </head>
 <body>
 <div id="app">
@@ -36,8 +38,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark indigo">
 
     <div class="container">
-  
-      <a class="font-weight-bold navbar-brand py-0" href="#">Ifarm</a>
+    <img src="{{asset('apple.svg')}}" style="height: 50px">
+    <a class="font-weight-bold navbar-brand py-0" href="#">Ifarm</a>
   
       <!-- Collapse button -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
@@ -51,14 +53,14 @@
         <!-- Links -->
         <ul class="navbar-nav mr-auto text-uppercase">
           <li class="nav-item active">
-            <a class="nav-link font-weight-normal" href="{{ url('/') }}">Home</a>
+            <a class="nav-link font-weight-normal" href="{{ url('/') }}">الصفحة الرئيسية</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link font-weight-normal" href="{{ route('cart.all') }}">Cart</a>
+            <a class="nav-link font-weight-normal" href="{{ route('cart.all') }}">العربة</a>
         </li>
         @if(auth()->user()->admin)
             <li class="nav-item">
-                <a class="nav-link font-weight-normal" href="{{ route('product.orders') }}">Orders</a>
+                <a class="nav-link font-weight-normal" href="{{ route('orders.orders') }}">الطلبات</a>
             </li>
         @endif
         </ul>
@@ -74,7 +76,7 @@
                 <div id="cart-list" style="width: 350px" class="dropdown-menu col-md-4" aria-labelledby="navbarDropdown">
                     @if(session()->has('cart'))
                         @foreach(session('cart') as $ci)
-                <div class="row px-2 d-flex align-items-center justify-content-between" id = "data_{{$ci['id']}}">
+                            <div class="row px-2 d-flex align-items-center justify-content-between data_{{$ci['id']}}" id = "data_{{$ci['id']}}">
                                 <div class="col-3">
                                     <img class="img-fluid" src="{{$ci['photo']}}" alt="">
                                 </div>
@@ -85,8 +87,10 @@
                                     </p>
                                 </div>
                                 <div class="col-2">
-                                    <a class="cart_delete_btn btn btn-sm btn-danger mdi mdi-trash-can" 
-                                href = "{{ route('cart.remove', $ci['id'])}}"></a>
+                                    <a class="cart_delete_btn btn btn-sm btn-danger mdi mdi-trash-can" data-target = "data_{{$ci['id']}}"
+                                    data-price = "{{$ci['total']}}" href = "{{ route('cart.remove', $ci['id'])}}">
+                            
+                                </a>
                                 </div>
                             </div>
                         @endforeach
@@ -108,7 +112,7 @@
                 <a class="dropdown-item" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
-                    {{ __('Logout') }}
+                    {{ __('تسجيل الخروج') }}
                 </a>
             </div>
         </li>
@@ -234,8 +238,17 @@
     @endif
     $(document).on('click', '.cart_delete_btn', function(e){
         e.preventDefault();
-        $(this).parent().parent().remove();
-        let qty = parseInt($("#cart_item_qty").text()); --qty;
+        let class_name = "." + $(this).data('target');
+        let item_price = $(this).data('price');
+        $(class_name).remove();
+        item_price = parseFloat(item_price);
+        let order_price_ele = $('#order_price');
+        let new_price =  parseFloat(order_price_ele.text()) - item_price;
+        order_price_ele.text(new_price);
+        //$(this).parent().parent().remove();
+        let qty = parseInt($("#cart_item_qty").text());
+        if(qty > 0)
+            --qty;
         $("#cart_item_qty").text(qty);
         $.ajax({
             url: $(this).attr('href'),
@@ -244,6 +257,7 @@
 </script>
 
 @stack("js")
+
 <script>
 
 </script>

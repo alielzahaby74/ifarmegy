@@ -6,7 +6,7 @@ Route::view('/',"home");
 
 Route::middleware('auth')->prefix('dash')->group(function () {
 
-    Route::view('/',"home");
+    //Route::view('/',"home");
     Route::get('/',"DashController@index")->name('dash');
     Route::middleware('admin')->group(function ()
     {
@@ -29,7 +29,8 @@ Route::middleware('auth')->prefix('dash')->group(function () {
             Route::post('/update/{id}',"ProductController@update")->name('product.update');
             Route::get('/delete/{id}',"ProductController@delete")->name('product.delete');
 
-            Route::get('/orders', 'ProductController@orders')->name('product.orders');
+            Route::get('/orders', 'OrderController@orders')->name('orders.orders');
+            Route::get('/order', 'OrderController@order')->name('order.orders');
         });
         Route::get('/cat/{id}', "ProductController@getCatList")->name('products.getList');
         Route::view('/cat/list', 'products.category');
@@ -37,6 +38,18 @@ Route::middleware('auth')->prefix('dash')->group(function () {
         Route::get('/all',"ProductController@all")->name('product.all');
 
         //Route::post('/cart/add', "ProductController@addToCart",)->name('cart.add');
+    });
+
+    Route::prefix('orders')->group(function (){
+        // /product/*
+        Route::middleware('admin')->group(function ()
+        {
+            Route::get('/orders', 'OrderController@orders')->name('orders.orders');
+            Route::get('/order/{id}', 'OrderController@order')->name('orders.order');
+
+            Route::get('/delete/{id}', 'OrderController@delete')->name('order.delete');
+            Route::get('/complete/{id}', 'OrderController@completeOrder')->name('order.complete');
+        });
     });
 
     Route::prefix('cart')->group(function () {

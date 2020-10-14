@@ -108,11 +108,4 @@ class ProductController extends Controller
         $request->qty += $step;
         return redirect()->back();
     }*/
-
-    public function orders()
-    {
-        $orders = Order::all();
-        $items = Order_item::all();
-        return view($this->view . "orders", ['orders' => $orders, 'items' => $items]);
-    }
 }
