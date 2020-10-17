@@ -102,19 +102,39 @@ $(document).ready(function(e){
     $('.inc-num').on('click', function(e){
         e.preventDefault();
         //console.log($(this).parent().find('input[type="number"]').val().length == 0);
-        if($(this).parent().find('input[name="qty"]')[0].value.length == 0)
+        if($(this).parent().parent().find('input[name="qty"]')[0].value.length == 0)
         {
-            $(this).parent().find('input[name="qty"]')[0].value = 0;
+            $(this).parent().parent().find('input[name="qty"]')[0].value = 0;
         }
-        var step = parseFloat($(this).parent().find('input[name="step"]').val());
-        var oldVal = parseFloat($(this).parent().find('input[name="qty"]')[0].value);
+        //var step = parseFloat($(this).parent().find('input[name="step"]').val());
+        let step = parseFloat($(this).parent().data('step'));
+        var oldVal = parseFloat($(this).parent().parent().find('input[name="qty"]')[0].value);
         var newVal = oldVal + step;
 
         //console.log(oldVal);
-        console.log($(this).parent().find('input[name="qty"]')[0]);
-        //console.log(step);
-        $(this).parent().find('input[name="qty"]')[0].value = newVal;
-        //$(this).parent().parent().submit();
+        console.log($(this).parent().parent().find('input[name="qty"]')[0]);
+        console.log(step);
+        $(this).parent().parent().find('input[name="qty"]')[0].value = newVal;
+    });
+
+    $('.dec-num').on('click', function(e){
+        e.preventDefault();
+        //console.log($(this).parent().find('input[type="number"]').val().length == 0);
+        let val = $(this).parent().parent().find('input[name="qty"]')[0].value;
+        if(val.length == 0 || val == 0)
+        {
+            $(this).parent().parent().find('input[name="qty"]')[0].value = 0;
+            return;
+        }
+        //var step = parseFloat($(this).parent().find('input[name="step"]').val());
+        let step = parseFloat($(this).parent().data('step'));
+        var oldVal = parseFloat($(this).parent().parent().find('input[name="qty"]')[0].value);
+        var newVal = oldVal - step;
+
+        //console.log(oldVal);
+        console.log($(this).parent().parent().find('input[name="qty"]')[0]);
+        console.log(step);
+        $(this).parent().parent().find('input[name="qty"]')[0].value = newVal;
     });
 
     $('.delete_btn').on('click', function(e){
@@ -125,5 +145,55 @@ $(document).ready(function(e){
         });
     });
 
-    
+    $(".addToCartForm").on('submit', function (e) {
+        // global , local
+        e.preventDefault();
+        let _that = $(this);
+        let order_price_ele = $('#order_price');
+        let old_val = $(this).data('total');
+        $.ajax({
+            url: $(this).attr('action'),
+            method: "POST",
+            data: $(this).serialize(),
+            success: function (res) {
+                _that.trigger("reset");
+                //console.log(res);
+                if (res.isNew == 0){
+                    $("#cart-list .cart-empty").hide();
+                    let qty = parseInt($("#cart_item_qty").text()); ++qty;
+                    $("#cart_item_qty").text(qty);
+                    $("#cart-list").append(`
+                            <div class="row px-2 d-flex align-items-center justify-content-between" name = "data_${res.id}" id = "data_${res.id}">
+                                <div class="col-3">
+                                    <img class="img-fluid" src="${res.photo}" alt="">
+                                </div>
+                                <div class="col-7">
+                                    <p style="line-height: 20px;font-size: 15px" class="mb-0">
+                                        <b>${res.name}</b> <br>
+                                        <span id="item_qty_${res.id}">${res.qty}</span>x${res.item_price}EGP
+                                    </p>
+                                </div>
+                                <div class="col-2">
+                                    <a class="cart_delete_btn btn btn-sm btn-danger mdi mdi-trash-can" 
+                                href = "{{ route('cart.remove')}}/${res.id}"></a>
+                                </div>
+                            </div>
+                            `);
+                } else {
+
+                    $("#item_qty_" + res.id).html(res.qty);
+                }
+                //updating the table column
+                $('#item_' + res.id + '_price').text('$' + res.total);
+                let new_val = res.total;
+                order_price_ele.text(parseFloat(order_price_ele.text()) - old_val + new_val);
+                
+            },
+            error: function (e) {
+                swal.fire("An error Happened", "", "error"),
+                    console.log(e)
+            }
+        });
+    });
+
 });

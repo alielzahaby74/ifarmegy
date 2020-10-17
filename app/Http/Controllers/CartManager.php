@@ -61,6 +61,7 @@ class CartManager extends Controller
                 "name"=>$item->name,
                 "item_price"=>$item->price,
                 "qty"=> (float) $request->qty,
+                "step" => (float) $request->item_step,
                 "photo"=>asset($item->photo),
                 "total"=>$item->price*$request->qty
             ];

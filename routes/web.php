@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
-Route::view('/',"home");
+Route::get('/',"ProductController@home");
 
 Route::middleware('auth')->prefix('dash')->group(function () {
 

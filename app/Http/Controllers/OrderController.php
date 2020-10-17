@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Order;
 use App\Order_item;
+use App\User;
 
 class OrderController extends Controller
 {
@@ -31,6 +32,10 @@ class OrderController extends Controller
 
     public function completeOrder($id)
     {
+        $order = Order::where('id', $id);
+        $user = User::where('id', $order->user_id);
+        $user->num_of_buys++;
+        $user->save();
         Order::destroy($id);
         return redirect()->route('orders.orders')
         ->with(['status'=>true,"type"=>"success","msg"=>"Order Completed!","msg2"=>""]);

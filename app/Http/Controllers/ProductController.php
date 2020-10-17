@@ -14,6 +14,13 @@ class ProductController extends Controller
 {
     protected  $view = "products.";
 
+    public function home()
+    {
+        $categories = Category::all();
+        $items = Product::limit(10)->inRandomOrder()->get();
+        return view('home', ['categories' => $categories, 'items' => $items]);
+    }
+
     public function all()
     {
         $items = Product::all();

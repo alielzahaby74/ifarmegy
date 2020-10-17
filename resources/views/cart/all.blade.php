@@ -6,25 +6,25 @@
         <section>
           <!-- Shopping Cart table -->
           <div class="table-responsive">
-            <table class="table product-table table-cart-v-1">
+            <table class="table product-table table-cart-v-1" style="direction: rtl">
                 <!-- Table head -->
                 <thead>
                 <tr>
-                    <th>الصورة</th>
-                    <th class="font-weight-bold">
-                    <strong>المنتج</strong>
+                    <th class="text-right">الصورة</th>
+                    <th class="font-weight-bold text-right">
+                      <strong>المنتج</strong>
                     </th>
-                    <th></th>
-                    <th class="font-weight-bold">
+                    <th class="font-weight-bold text-right"></th>
+                    <th class="font-weight-bold text-right">
                     <strong>السعر</strong>
                   </th>
-                    <th class="font-weight-bold">
+                    <th class="font-weight-bold text-right">
                     <strong>الكمية</strong>
                   </th>
-                    <th class="font-weight-bold">
+                    <th class="font-weight-bold text-right">
                     <strong>السعر الكلي</strong>
                   </th>
-                    <th>حذف</th>
+                    <th class="text-right">حذف</th>
                   </tr>
                 </thead>
                 <!-- Table head -->
@@ -51,20 +51,38 @@
 
                     <!-- First row -->
                     <tr class = "data_{{$ci['id']}}">
-                      <th scope="row">
+                      <th class="text-right" scope="row">
                         <img src="{{$ci['photo']}}" alt=""
                           class="img-fluid z-depth-0" style="height: 100px">
                       </th>
-                      <td>
+                      <td class="text-right">
                         <h5 class="mt-3">
                           <strong>{{$ci['name']}}</strong>
                         </h5>
                         <!--<p class="text-muted">Apple</p>-->
                       </td>
-                      <td></td>
-                      <td>${{$ci['item_price']}}</td>
-                      <td class="text-center text-md-left">
-                        <span class="qty">{{$ci['qty']}}</span>
+                      <td class="text-right"></td>
+                      <td class="text-right">${{$ci['item_price']}}</td>
+                      <td class="text-right">
+                        <!--<span class="qty">{{$ci['qty']}}</span>-->
+                        <div class="pb-0 w-50">
+                          <div class="mb-0 d-flex flex-row align-items-center">
+                            <div class="price-input">
+                              <form method = "POST" class="addToCartForm" 
+                              action="{{route('cart.add')}}" id="from{{$ci['id']}}" data-total = "{{$ci['total']}}">
+                              @csrf
+                                  <input type="hidden" name = "item_id" value="{{$ci['id']}}">
+                                  <input id="test" min = "0.0" step = "any" name = "qty" type="number" class="qty w-100 form-control">
+                            <div class="price-btns d-flex flex-column" data-step="{{$ci['step']}}">
+                                  <a class="inc-num"><span class="mdi mdi-chevron-up"></span></a>
+                                  <a class="dec-num"><span class="mdi mdi-chevron-down"></span></a>  
+                              </div>
+                          </div>
+                              <button class="btn btn-primary btn-sm py-1 px-2"><span class="mdi mdi-cart-plus mdi-24px"></span></button>
+                              </form>
+                          </div>
+                        </div>
+                      </div>
                         <!--<div class="btn-group radio-group ml-2" data-toggle="buttons">
                           <label class="btn btn-sm btn-primary btn-rounded">
                             <input type="radio" name="options" id="option1">&mdash;
@@ -74,10 +92,10 @@
                           </label>
                         </div>-->
                       </td>
-                      <td class="font-weight-bold">
-                        <strong>${{$ci['total']}}</strong>
+                      <td class="font-weight-bold text-right">
+                        <strong id = "item_{{$ci['id']}}_price">${{$ci['total']}}</strong>
                       </td>
-                      <td>
+                      <td class="text-right">
                         <a href = "{{ route('cart.remove', $ci['id'])}}" class="cart_delete_btn btn btn-sm btn-primary"
                         data-target = "data_{{$ci['id']}}" data-price = "{{$ci['total']}}"title="Remove item">X
                       </a>
@@ -96,7 +114,8 @@
                     </td>
                     <td class="text-right">
                         <h4 class="mt-2">
-                        <strong id = "order_price">{{$total_cost}}</strong>
+                          <strong id = "order_price">{{$total_cost}}</strong>
+                          <span> جنية </span>
                         </h4>
                     </td>
                     <td colspan="3" class="text-right">
@@ -116,4 +135,3 @@
         </div>
       @endif
 @endsection
-
