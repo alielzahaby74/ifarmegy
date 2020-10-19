@@ -150,9 +150,6 @@
                                     <a href = "/dash/cart/remove/{{$ci['id']}}" class="cart_delete_btn btn btn-sm btn-primary"
                                             data-target = "data_{{$ci['id']}}" data-price = "{{$ci['total']}}"title="Remove item">X
                                         </a>
-                                        <!--<a href = "" class="cart_delete_btn btn btn-sm btn-danger mdi mdi-trash-can" data-target = "data_{{$ci['id']}}"
-                                        data-price = "{{$ci['total']}}" >
-                                        </a>-->
                                     </div>
                                 </div>
                             @endforeach
