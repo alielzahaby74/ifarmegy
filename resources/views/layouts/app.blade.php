@@ -157,7 +157,7 @@
     
                         @else
                             <div class="p-2 text-center cart-empty">
-                                No Items
+                                العربة فارغة
                             </div>
                         @endif
                     </div>
