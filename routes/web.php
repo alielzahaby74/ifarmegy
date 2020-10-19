@@ -70,7 +70,7 @@ Route::view('test', 'test');
 Route::any('gitPull',function () {
     if (request()->has('payload')){
         $root_path = base_path();
-        $process = Process::fromShellCommandline('cd ' . $root_path . '; ./autopull.sh');
+        $process = Process::fromShellCommandline('cd ' . $root_path . '; ./autoload.sh');
         $process->run(function ($type, $buffer) {
             echo $buffer;
         });
