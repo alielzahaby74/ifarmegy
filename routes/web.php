@@ -7,7 +7,7 @@ use Symfony\Component\Process\Process;
 Route::get('/',"ProductController@home");
 
 Route::middleware('auth')->prefix('dash')->group(function () {
-
+    Route::get('/',"ProductController@home");
     //Route::view('/',"home");
     Route::get('/',"DashController@index")->name('dash');
     Route::middleware('admin')->group(function ()
@@ -57,7 +57,7 @@ Route::middleware('auth')->prefix('dash')->group(function () {
     Route::prefix('cart')->group(function () {
         Route::get("/","CartManager@all")->name('cart.all');
         Route::post("/add","CartManager@add")->name('cart.add');
-        Route::get("/remove/{id?}","CartManager@remove")->name('cart.remove');
+        Route::get("/remove/{id}","CartManager@remove")->name('cart.remove');
         Route::get("/delete","CartManager@delete")->name('cart.delete');
         Route::get("/sendOrder", "CartManager@sendOrder")->name('cart.sendOrder');
     });

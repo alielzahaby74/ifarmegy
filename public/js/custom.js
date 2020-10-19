@@ -175,7 +175,7 @@ $(document).ready(function(e){
                                 </div>
                                 <div class="col-2">
                                     <a class="cart_delete_btn btn btn-sm btn-danger mdi mdi-trash-can" 
-                                href = "{{ route('cart.remove')}}/${res.id}"></a>
+                                href = "/dash/cart/remove/${res.id}"></a>
                                 </div>
                             </div>
                             `);
@@ -184,6 +184,7 @@ $(document).ready(function(e){
                     $("#item_qty_" + res.id).html(res.qty);
                 }
                 //updating the table column
+                console.log(res.id);
                 $('#item_' + res.id + '_price').text('$' + res.total);
                 let new_val = res.total;
                 order_price_ele.text(parseFloat(order_price_ele.text()) - old_val + new_val);

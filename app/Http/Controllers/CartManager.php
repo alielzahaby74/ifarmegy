@@ -71,8 +71,7 @@ class CartManager extends Controller
     }
     public function remove(Request $request, $id)
     {
-
-        $Cart = null;
+        $cart = null;
         if(session()->has('cart'))
         {
             $cart = array_filter(session('cart'), function ($i) use ($id){
@@ -80,10 +79,14 @@ class CartManager extends Controller
             });
         }
         if(count($cart) > 0)
+        {
             session()->put('cart', $cart);
+        }
         else
+        {
             $request->session()->forget('cart');
-        //return redirect()->back();
+        }
+        return redirect()->back();
     }
 
     public function delete(Request $request)

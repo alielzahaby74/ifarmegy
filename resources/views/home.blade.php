@@ -14,7 +14,7 @@
       <div class="carousel-inner" role="listbox">
         <div class="carousel-item active">
           <div class="view">
-            <a href="#!">
+            <a href="">
               <img class="d-block w-100" 
               src="https://ebtikar-it.com/wp-content/uploads/2017/01/banner-web-design.png" alt="First slide">
                 <div class="mask rgba-white-slight text-center d-flex align-items-center justify-content-center">
@@ -28,7 +28,7 @@
         </div>
         <div class="carousel-item">
           <div class="view">
-            <a href="#!">
+            <a href="">
               <img class="d-block w-100" 
               src="https://ebtikar-it.com/wp-content/uploads/2017/01/banner-web-design.png" alt="second slide">
                 <div class="mask rgba-white-slight text-center d-flex align-items-center justify-content-center">
@@ -79,7 +79,7 @@
             <a href="{{route('products.getList', $category->id)}}">
             <h4 class="mb-0">{{$category->name}}</h4>
             </a>
-            <h6>عدد الاقسام</h6>
+            <!--<h6>عدد الاقسام</h6>-->
           </div>
         </div>
         @endforeach

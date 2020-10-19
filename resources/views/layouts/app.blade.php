@@ -60,7 +60,7 @@
                         </div>
                         <div class="col-2">
                             <a class="cart_delete_btn btn btn-sm btn-danger mdi mdi-trash-can" data-target = "data_{{$ci['id']}}"
-                            data-price = "{{$ci['total']}}" href = "{{ route('cart.remove', $ci['id'])}}">
+                            data-price = "{{$ci['total']}}" href = "">
                     
                         </a>
                         </div>
@@ -147,10 +147,12 @@
                                         </p>
                                     </div>
                                     <div class="col-2">
-                                        <a class="cart_delete_btn btn btn-sm btn-danger mdi mdi-trash-can" data-target = "data_{{$ci['id']}}"
-                                        data-price = "{{$ci['total']}}" href = "{{ route('cart.remove', $ci['id'])}}">
-                                
-                                    </a>
+                                    <a href = "/dash/cart/remove/{{$ci['id']}}" class="cart_delete_btn btn btn-sm btn-primary"
+                                            data-target = "data_{{$ci['id']}}" data-price = "{{$ci['total']}}"title="Remove item">X
+                                        </a>
+                                        <!--<a href = "" class="cart_delete_btn btn btn-sm btn-danger mdi mdi-trash-can" data-target = "data_{{$ci['id']}}"
+                                        data-price = "{{$ci['total']}}" >
+                                        </a>-->
                                     </div>
                                 </div>
                             @endforeach
@@ -190,9 +192,10 @@
     @endif
 </script>
 <script>
+    
     $(document).on('click', '.cart_delete_btn', function(e){
-        e.preventDefault();
-
+            e.preventDefault();
+            
         //console.log($(this).data('target'));
         let class_name = "." + $(this).data('target');
         let item_price = $(this).data('price');
@@ -200,8 +203,8 @@
         let order_price_ele = $('#order_price');
         let new_price =  parseFloat(order_price_ele.text()) - item_price;
         order_price_ele.text(new_price);
-        //$(this).parent().parent().remove();
-        $(class_name).fadeOut();
+        $(this).parent().parent().remove();
+        $(class_name).remove();
         let qty = parseInt($("#cart_item_qty").text());
         if(qty > 0)
             --qty;
@@ -210,6 +213,7 @@
         $("#cart_item_qty").text(qty);
         $.ajax({
             url: $(this).attr('href'),
+            method: "GET",
         });
     });
 </script>
