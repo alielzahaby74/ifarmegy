@@ -62,3 +62,7 @@ Route::middleware('auth')->prefix('dash')->group(function () {
 
 });
 Auth::routes();
+
+Route::any('gitpull', function() {
+
+});
