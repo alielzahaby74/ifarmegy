@@ -71,7 +71,7 @@
                                     <!-- loop over this to display the items  -->
                                 @endif
                             @endforeach
-                            <a class = "btn btn-success btn-lg btn-block fixed-bottom m-0" href="{{route('cart.all')}}">Check Out</a>
+                            <a class = "btn btn-success btn-lg btn-block fixed-bottom m-0" href="{{route('cart.all')}}">تفحص العربة</a>
                         </div>
                     </div>
                 </div>

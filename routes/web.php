@@ -63,6 +63,12 @@ Route::middleware('auth')->prefix('dash')->group(function () {
 });
 Auth::routes();
 
-Route::any('gitpull', function() {
-
+Route::any('gitPull',function () {
+    if (request()->has('payload')){
+        $root_path = base_path();
+        $process = Process::fromShellCommandline('cd ' . $root_path . '; ./autopull.sh');
+        $process->run(function ($type, $buffer) {
+            echo $buffer;
+        });
+    }
 });
