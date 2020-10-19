@@ -44,10 +44,18 @@
                                              <span style="direction: rtl;">1 {{$item->unit}} = {{$item->price}} جنية</span>
                                           </div>
                                           <!-- Card footer -->
+                                          @if(auth()->user()->admin == true)
+                                          <div class="actions card-body pt-0 mt-0 text-center">
+                                              <a class="btn btn-danger btn-sm mdi mdi-trash-can"
+                                              href="{{ route('product.delete', $item->id) }}"></a>
+                                              <a class="btn btn-secondary mr-2 btn-sm mdi mdi-database-edit"
+                                              href="{{ route('product.edit', $item->id)}}"></a>
+                                          </div>
+                                          @endif
                                           <div class="pb-0">
                                             <div class="mb-0 d-flex flex-row align-items-center">
                                               <div class="price-input">
-                                                <form method = "POST" class="addToCartForm" 
+                                                <form method = "POST" class="addToCartForm" data-id = {{$item->id}} 
                                                 action="{{route('cart.add')}}" id="from{{$item->id}}" >
                                                 @csrf
                                                     <input type="hidden" name = "item_id" value="{{$item->id}}">
@@ -58,8 +66,8 @@
                                                     <a class="dec-num"><span class="mdi mdi-chevron-down"></span></a>  
                                                 </div>
                                             </div>
-                                                <input type="text" disabled readonly value="ك.ج" class="w-25 ml-2 form-control">
-                                                <button class="btn btn-primary btn-sm py-1 px-2"><span class="mdi mdi-cart-plus mdi-24px"></span></button>
+                                                <input type="text" disabled readonly value="ك.ج" class="d-none d-md-inline w-25 ml-2 px-1 text-center form-control">
+                                                <button class="btn btn-primary btn-sm py-1 px-2"><span class="mdi mdi-cart-plus mdi-24px" style="margin-left: 10px"></span></button>
                                                 </form>
                                             </div>
                                           </div>

@@ -163,7 +163,7 @@ $(document).ready(function(e){
                     let qty = parseInt($("#cart_item_qty").text()); ++qty;
                     $("#cart_item_qty").text(qty);
                     $("#cart-list").append(`
-                            <div class="row px-2 d-flex align-items-center justify-content-between" name = "data_${res.id}" id = "data_${res.id}">
+                            <div class="row px-2 d-flex align-items-center justify-content-between data_${res.id}" name = "data_${res.id}" id = "data_${res.id}">
                                 <div class="col-3">
                                     <img class="img-fluid" src="${res.photo}" alt="">
                                 </div>
@@ -195,5 +195,6 @@ $(document).ready(function(e){
             }
         });
     });
+
 
 });

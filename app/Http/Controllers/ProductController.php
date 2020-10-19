@@ -17,7 +17,7 @@ class ProductController extends Controller
     public function home()
     {
         $categories = Category::all();
-        $items = Product::limit(10)->inRandomOrder()->get();
+        $items = Product::limit(4)->inRandomOrder()->get();
         return view('home', ['categories' => $categories, 'items' => $items]);
     }
 
@@ -95,10 +95,13 @@ class ProductController extends Controller
         $product->name = $request->item_name;
         $product->price = $request->item_price;
         $product->category_id = $request->cat_id;
-        $file  = Storage::disk('public')->putFileAs("product/", $request->file('item_photo'), time().".".$request->file('item_photo')->getClientOriginalName());
-        $url = "storage/$file";
-        $product->photo = $url;
-        $product->save();
+        if($request->has('item_photo'))
+        {
+            $file  = Storage::disk('public')->putFileAs("product/", $request->file('item_photo'), time().".".$request->file('item_photo')->getClientOriginalName());
+            $url = "storage/$file";
+            $product->photo = $url;
+        }
+            $product->save();
         return redirect()->route('dash')
             ->with(['status'=>true,"type"=>"success","msg"=>"Success Editing the Item","msg2"=>""]);
     }

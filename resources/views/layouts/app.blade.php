@@ -41,7 +41,7 @@
     
         <a class="navbar-brand d-flex align-items-center flex-row-" href="#">
         
-        <img src="{{asset('apple.svg')}}" style="height: 50px">
+        <img src="{{asset('logo.jpeg')}}" style="height: 50px">
         <span style="font-weight: 500;" class="ml-2 mt-1">IFarm</span>
         </a>
     
@@ -154,7 +154,6 @@
                                     </div>
                                 </div>
                             @endforeach
-    
                         @else
                             <div class="p-2 text-center cart-empty">
                                 العربة فارغة
@@ -163,11 +162,11 @@
                     </div>
                 </li>
             </ul>
-          </div>
-      
         </div>
-      
-      </nav>
+    
+        </div>
+    
+    </nav>
     
     <main class="py-4">
         @yield('content')
@@ -189,19 +188,25 @@
     @if(session()->has('status'))
     swal.fire("{{ session('msg') }}","{{ session('msg2') }}","{{ session('type') }}");
     @endif
+</script>
+<script>
     $(document).on('click', '.cart_delete_btn', function(e){
         e.preventDefault();
+
+        //console.log($(this).data('target'));
         let class_name = "." + $(this).data('target');
         let item_price = $(this).data('price');
-        $(class_name).remove();
         item_price = parseFloat(item_price);
         let order_price_ele = $('#order_price');
         let new_price =  parseFloat(order_price_ele.text()) - item_price;
         order_price_ele.text(new_price);
         //$(this).parent().parent().remove();
+        $(class_name).fadeOut();
         let qty = parseInt($("#cart_item_qty").text());
         if(qty > 0)
             --qty;
+        if(qty == 0)
+            $("#cart-list .cart-empty").show();
         $("#cart_item_qty").text(qty);
         $.ajax({
             url: $(this).attr('href'),

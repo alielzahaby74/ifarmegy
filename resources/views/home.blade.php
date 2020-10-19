@@ -125,7 +125,7 @@
                 </h5>
                 <span class="badge badge-danger mb-2">{{$item->category()->first()->name}}</span>
                 <div class="PRICE-BOX">
-                  <span style="">1 {{$item->unit}} = {{$item->cost}} جنية</span>
+                  <span style="">1 {{$item->unit}} = {{$item->price}} جنية</span>
                 </div>
                 <!-- Card footer -->
                 <form method = "POST" class="addToCartForm" 
@@ -142,8 +142,8 @@
                           <a class="dec-num"><span class="mdi mdi-chevron-down"></span></a>  
                         </div>
                       </div>
-                      <input type="text" disabled readonly value="ك.ج" class="w-25 ml-2 form-control">
-                      <button class="btn btn-primary btn-sm py-1 px-2"><span class="mdi mdi-cart-plus mdi-24px"></span></button>
+                      <input type="text" disabled readonly value="ك.ج" class="d-none d-md-inline w-25 px-1 text-center ml-2 form-control">
+                      <button class="btn btn-primary btn-sm py-1 px-2"><span class="mdi mdi-cart-plus mdi-24px" style="margin-left: 10px"></span></button>
                     </div>
                   </div>
                 </form>

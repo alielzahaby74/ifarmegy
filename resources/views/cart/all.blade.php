@@ -78,7 +78,7 @@
                                   <a class="dec-num"><span class="mdi mdi-chevron-down"></span></a>  
                               </div>
                           </div>
-                              <button class="btn btn-primary btn-sm py-1 px-2"><span class="mdi mdi-cart-plus mdi-24px"></span></button>
+                              <button class="btn btn-primary btn-sm py-1 px-2"><span class="mdi mdi-cart-plus mdi-24px" style="margin-left: 10px"></span></button>
                               </form>
                           </div>
                         </div>

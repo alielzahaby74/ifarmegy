@@ -16,7 +16,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>
-                                            Product Name
+                                            اسم المنتج
                                         </label>
                                         <input required value="{{$item->name}}" name="item_name" type="text" class="form-control">
                                     </div>
@@ -24,14 +24,14 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>
-                                            Product Price
+                                            سعر المنتج
                                         </label>
                                         <input required value="{{$item->price}}" name="item_price" step="any" type="number" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group autocomplete w-100">
-                                        <label for="cat">Category</label>
+                                        <label for="cat">نوع المنتج</label>
                                         <input type="text" autocomplete="off" id="cat" class="form-control" />
                                         <input required value="{{$item->category_id}}" name="cat_id" type="hidden" id="cat_id" class="form-control" />
                                     </div>
@@ -39,7 +39,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>
-                                            Product Photo
+                                            صورة المنتج 
                                         </label>
                                         <input name="item_photo" type="file" class="form-control-file">
                                     </div>
