@@ -39,7 +39,7 @@
                                             <p class="dark-grey-text">{{$item->name}}</a>
                                             </strong>
                                           </h5>
-                                          <span class="badge badge-danger mb-2">فواكه</span>
+                                          <span class="badge badge-danger mb-2"></span>
                                           <div class="PRICE-BOX">
                                              <span style="direction: rtl;">1 {{$item->unit}} = {{$item->price}} جنية</span>
                                           </div>
