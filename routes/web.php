@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\Process\Process;
+
 Route::get('/',"ProductController@home");
 
 Route::middleware('auth')->prefix('dash')->group(function () {
@@ -62,6 +64,8 @@ Route::middleware('auth')->prefix('dash')->group(function () {
 
 });
 Auth::routes();
+
+Route::view('test', 'test');
 
 Route::any('gitPull',function () {
     if (request()->has('payload')){
