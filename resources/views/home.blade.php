@@ -103,7 +103,7 @@
       <div class="row flex-row">
         <!-- loop over this to display the items  -->
         @foreach($items as $item)
-          <div class="col-lg-3 col-md-6 mb-4">
+          <div class="col-lg-3 col-md-6 mb-4 col-6">
             <!-- Card -->
             <div class="card card-ecommerce">
               <!-- Card image -->

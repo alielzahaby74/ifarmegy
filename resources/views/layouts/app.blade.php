@@ -160,7 +160,7 @@
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
             </form>
-            <ul class="nav navbar-nav nav-flex-icons mr-0 d-lg-inline d-none">
+            <ul class="nav navbar-nav nav-flex-icons mr-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="badge red z-depth-1 mr-1" id="cart_item_qty">
