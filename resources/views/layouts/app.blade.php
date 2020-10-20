@@ -1,5 +1,5 @@
 <!doctype html>
-<html dir = "rtl" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html dir = "rtl" >
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -39,13 +39,13 @@
 
         <div class="container flex-row"> 
     
-        <a class="navbar-brand d-flex align-items-center flex-row-" href="#">
+        <a class="navbar-brand d-flex align-items-center flex-row-" href="/">
         
         <img src="{{asset('logo.jpeg')}}" style="height: 50px">
         <span style="font-weight: 500;" class="ml-2 mt-1">IFarm</span>
         </a>
         
-        <ul class="nav navbar-nav nav-flex-icons mr-0 d-md-inline d-lg-none" style="">
+        <!--<ul class="nav navbar-nav nav-flex-icons mr-0 d-md-inline d-lg-none" style="">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="badge red z-depth-1 mr-1" id="cart_item_qty">
@@ -68,8 +68,7 @@
                                 </div>
                                 <div class="col-2">
                                 <a href = "/dash/cart/remove/{{$ci['id']}}" class="cart_delete_btn btn btn-sm btn-danger mdi mdi-trash-can"
-                                        data-target = "data_{{$ci['id']}}" data-price = "{{$ci['total']}}"title="Remove item">
-                                    </a>
+                                    data-target = "data_{{$ci['id']}}" data-price = "{{$ci['total']}}"title="Remove item"></a>
                                 </div>
                             </div>
                         @endforeach
@@ -80,7 +79,7 @@
                     @endif
                 </div>
             </li>
-        </ul>
+        </ul>-->
         <!--<div class="nav-item avatar dropdown d-md-none d-clock">
             @if(session()->has('cart'))
                 @foreach(session('cart') as $ci)
@@ -183,8 +182,8 @@
                                         </p>
                                     </div>
                                     <div class="col-2">
-                                    <a href = "/dash/cart/remove/{{$ci['id']}}" class="cart_delete_btn btn btn-sm btn-danger mdi mdi-trash-can"
-                                            data-target = "data_{{$ci['id']}}" data-price = "{{$ci['total']}}"title="Remove item">X
+                                    <a href = "/cart/remove/{{$ci['id']}}" class="cart_delete_btn btn btn-sm btn-danger mdi mdi-trash-can"
+                                            data-target = "data_{{$ci['id']}}" data-price = "{{$ci['total']}}"title="Remove item">
                                         </a>
                                     </div>
                                 </div>

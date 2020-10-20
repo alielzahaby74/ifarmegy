@@ -9,11 +9,11 @@ Route::prefix('product')->group(function (){
     Route::get('/cat/{id}', "ProductController@getCatList")->name('products.getList');
     Route::view('/cat/list', 'products.category');
 });
-/*Route::prefix('cart')->group(function () {
+Route::prefix('cart')->group(function () {
     Route::get("/","CartManager@all")->name('cart.all');
     Route::post("/add","CartManager@add")->name('cart.add');
     Route::get("/remove/{id}","CartManager@remove")->name('cart.remove');
-});*/
+});
 
 Route::middleware('auth')->prefix('dash')->group(function () {
     //Route::get('/',"ProductController@home");
@@ -24,7 +24,8 @@ Route::middleware('auth')->prefix('dash')->group(function () {
         Route::prefix('/categories')->group(function () {
             ROute::get('/',"CategoryController@index")->name('category.all');
             ROute::get('/cat/{id}',"CategoryController@linkedItems")->name('category.products');
-            //ROute::get('/edit/{id}',"CategoryController@editPage")->name('category.editPage');
+            ROute::get('/editPage/{id}',"CategoryController@editPage")->name('category.editPage');
+            ROute::post('/edit/{id}',"CategoryController@edit")->name('category.edit');
             ROute::get('/delete/{id}',"CategoryController@delete")->name('category.delete');
             ROute::get('/add',"CategoryController@add")->name('category.add');
             ROute::post('/add',"CategoryController@create")->name('category.create');
@@ -65,9 +66,9 @@ Route::middleware('auth')->prefix('dash')->group(function () {
     });
 
     Route::prefix('cart')->group(function () {
-        Route::get("/","CartManager@all")->name('cart.all');
+        /*Route::get("/","CartManager@all")->name('cart.all');
         Route::post("/add","CartManager@add")->name('cart.add');
-        Route::get("/remove/{id}","CartManager@remove")->name('cart.remove');
+        Route::get("/remove/{id}","CartManager@remove")->name('cart.remove');*/
         Route::get("/delete","CartManager@delete")->name('cart.delete');
         Route::get("/sendOrder", "CartManager@sendOrder")->name('cart.sendOrder');
     });
@@ -83,4 +84,5 @@ Route::any('gitPull',function () {
             echo $buffer;
         });
     }
-});
+    return redirect()->back();
+})->name('gitPull');

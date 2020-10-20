@@ -25,7 +25,7 @@ class CategoryController extends Controller
     public function editPage($id)
     {
         $cat = Category::findOrFail($id);
-        return view('category.editPage', $id);
+        return view($this->view . 'editPage', ['cat' => $cat]);
     }
 
     public function create(Request $request)

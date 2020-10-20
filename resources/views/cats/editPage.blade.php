@@ -10,7 +10,7 @@
                     <div class="card-header">تعديل النوع</div>
                     <div class="card-body">
                         <form enctype="multipart/form-data" method="post"
-                              action="{{ route('category.create') }}">
+                            action="{{ route('category.edit', $cat->id) }}">
                             @csrf
                             <div class="row">
                                 <div class="col-md-12">
@@ -18,7 +18,8 @@
                                         <label>
                                             اسم النوع
                                         </label>
-                                        <input name="item_name" type="text" class="form-control">
+                                        <br>
+                                    <input  type="text" vlaue = {{$cat->name}} name="item_name" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -27,7 +28,7 @@
                                             الصورة
                                         </label>
                                         <br>
-                                        <input name="item_photo" type="file" class="">
+                                    <input name="item_photo" value="{{$cat->photo}}" type="file" class="">
                                     </div>
                                 </div>
                                 <div class="col-md-12">

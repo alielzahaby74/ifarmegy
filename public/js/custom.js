@@ -175,7 +175,7 @@ $(document).ready(function(e){
                                 </div>
                                 <div class="col-2">
                                     <a class="cart_delete_btn btn btn-sm btn-danger mdi mdi-trash-can" 
-                                href = "/dash/remove/${res.id}"></a>
+                                    href = "/cart/remove/${res.id}"></a>
                                 </div>
                             </div>
                             `);

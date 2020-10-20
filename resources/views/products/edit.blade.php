@@ -41,7 +41,7 @@
                                         <label>
                                             صورة المنتج 
                                         </label>
-                                        <input name="item_photo" type="file" class="form-control-file">
+                                        <input name="item_photo" value="{{$item->photo}}" type="file" class="form-control-file">
                                     </div>
                                 </div>
                                 <div class="col-md-12">

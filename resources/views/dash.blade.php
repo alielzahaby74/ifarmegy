@@ -13,6 +13,9 @@
 
                     <a class="btn btn-primary btn-sm"
                        href="{{ route('category.all') }}">الأنواع</a>
+
+                       <a class="btn btn-primary btn-sm"
+                       href="{{ route('gitPull') }}">gitPull</a>
                     @endif
                 </div>
                 <div class="card-body">
