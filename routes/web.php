@@ -5,9 +5,18 @@ use Illuminate\Support\Facades\Route;
 use Symfony\Component\Process\Process;
 
 Route::get('/',"ProductController@home");
+Route::prefix('product')->group(function (){
+    Route::get('/cat/{id}', "ProductController@getCatList")->name('products.getList');
+    Route::view('/cat/list', 'products.category');
+});
+/*Route::prefix('cart')->group(function () {
+    Route::get("/","CartManager@all")->name('cart.all');
+    Route::post("/add","CartManager@add")->name('cart.add');
+    Route::get("/remove/{id}","CartManager@remove")->name('cart.remove');
+});*/
 
 Route::middleware('auth')->prefix('dash')->group(function () {
-    Route::get('/',"ProductController@home");
+    //Route::get('/',"ProductController@home");
     //Route::view('/',"home");
     Route::get('/',"DashController@index")->name('dash');
     Route::middleware('admin')->group(function ()
@@ -15,6 +24,7 @@ Route::middleware('auth')->prefix('dash')->group(function () {
         Route::prefix('/categories')->group(function () {
             ROute::get('/',"CategoryController@index")->name('category.all');
             ROute::get('/cat/{id}',"CategoryController@linkedItems")->name('category.products');
+            //ROute::get('/edit/{id}',"CategoryController@editPage")->name('category.editPage');
             ROute::get('/delete/{id}',"CategoryController@delete")->name('category.delete');
             ROute::get('/add',"CategoryController@add")->name('category.add');
             ROute::post('/add',"CategoryController@create")->name('category.create');
@@ -34,9 +44,9 @@ Route::middleware('auth')->prefix('dash')->group(function () {
             Route::get('/orders', 'OrderController@orders')->name('orders.orders');
             Route::get('/order', 'OrderController@order')->name('order.orders');
         });
-        Route::get('/cat/{id}', "ProductController@getCatList")->name('products.getList');
-        Route::view('/cat/list', 'products.category');
-
+        //Route::get('/cat/{id}', "ProductController@getCatList")->name('products.getList');
+        //Route::view('/cat/list', 'products.category');
+        
         Route::get('/all',"ProductController@all")->name('product.all');
 
         //Route::post('/cart/add', "ProductController@addToCart",)->name('cart.add');
@@ -64,8 +74,6 @@ Route::middleware('auth')->prefix('dash')->group(function () {
 
 });
 Auth::routes();
-
-Route::view('test', 'test');
 
 Route::any('gitPull',function () {
     if (request()->has('payload')){

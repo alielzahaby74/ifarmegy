@@ -8,10 +8,11 @@
 
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
-                      
+                      @if(Auth::check())
                         @if(auth()->user()->admin == true)
                             <a class="btn btn-primary btn-sm h2" href="{{ route('product.add') }}">أضف منتج</a>
                         @endif
+                      @endif
                     </div>
                     <div class="card-body">
                         <div class="row flex-row">
@@ -44,6 +45,7 @@
                                              <span style="direction: rtl;">1 {{$item->unit}} = {{$item->price}} جنية</span>
                                           </div>
                                           <!-- Card footer -->
+                                          @if(Auth::check())
                                           @if(auth()->user()->admin == true)
                                           <div class="actions card-body pt-0 mt-0 text-center">
                                               <a class="btn btn-danger btn-sm mdi mdi-trash-can"
@@ -51,6 +53,7 @@
                                               <a class="btn btn-secondary mr-2 btn-sm mdi mdi-database-edit"
                                               href="{{ route('product.edit', $item->id)}}"></a>
                                           </div>
+                                          @endif
                                           @endif
                                           <div class="pb-0">
                                             <div class="mb-0 d-flex flex-row align-items-center">

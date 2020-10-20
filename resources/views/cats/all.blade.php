@@ -28,7 +28,7 @@
                                             <a class="btn btn-danger btn-sm mdi mdi-trash-can" 
                                                 href="{{route('category.delete', $item->id)}}"></a>
                                             <a class="btn btn-secondary btn-sm mdi mdi-database-edit" 
-                                                href=""></a>
+                                                href="{{route('category.edit', $item->id)}}"></a>
                                             <a class="btn btn-primary mr-2 btn-sm mdi mdi-eye"
                                                 href="{{ route('category.products', ['id'=>$item->id]) }}"></a>
                                         </td>

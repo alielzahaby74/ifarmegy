@@ -22,6 +22,12 @@ class CategoryController extends Controller
         return view($this->view.'add');
     }
 
+    public function editPage($id)
+    {
+        $cat = Category::findOrFail($id);
+        return view('category.editPage', $id);
+    }
+
     public function create(Request $request)
     {
         $request->validate([
@@ -48,10 +54,28 @@ class CategoryController extends Controller
         return view($this->view."linked",compact('cat'));
     }
 
+    public function edit($id, Request $request)
+    {
+        $cat = Category::findOrFail($id);
+
+        if($request->has('item_name'))
+        {
+            $cat->name = $request->item_name;
+        }
+        if($request->has('item_photo'))
+        {
+            $file  = Storage::disk('public')->putFileAs("product/", $request->file('item_photo'), time().".".$request->file('item_photo')->getClientOriginalName());
+            $url = "storage/$file";
+            $cat->photo = $url;
+        }
+        $cat->save();
+        return redirect()->route('category.all')
+        ->with(['status'=>true,"type"=>"success","msg"=>"Success Editing item","msg2"=>""]);
+    }
     public function delete ($id)
     {
         Category::destroy($id);
-        return redirect()->route('product.all')
+        return redirect()->route('category.all')
         ->with(['status'=>true, "type"=>"success", "msg"=>"Success Deleting The category", "msg2"=>""]);
     }
 }

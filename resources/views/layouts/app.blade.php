@@ -44,7 +44,43 @@
         <img src="{{asset('logo.jpeg')}}" style="height: 50px">
         <span style="font-weight: 500;" class="ml-2 mt-1">IFarm</span>
         </a>
-    
+        
+        <ul class="nav navbar-nav nav-flex-icons mr-0 d-md-inline d-lg-none" style="">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="badge red z-depth-1 mr-1" id="cart_item_qty">
+                        {{session()->has('cart') ? count(session('cart')) : 0}} 
+                    </span>
+                    <i id="navbar-static-cart " alt="Cart" class="fas fa-shopping-cart"></i>
+                </a>
+                <div id="cart-list" style="width: 350px" class="dropdown-menu col-md-4" aria-labelledby="navbarDropdown">
+                    @if(session()->has('cart'))
+                        @foreach(session('cart') as $ci)
+                            <div class="row px-2 d-flex align-items-center justify-content-between data_{{$ci['id']}}" id = "data_{{$ci['id']}}">
+                                <div class="col-3">
+                                    <img class="img-fluid" src="{{$ci['photo']}}" alt="">
+                                </div>
+                                <div class="col-7">
+                                    <p style="line-height: 20px;font-size: 15px" class="mb-0">
+                                        <b>{{$ci['name']}}</b> <br>
+                                    <span id="item_qty_{{$ci['id']}}">{{$ci['qty']}}</span>x{{$ci['item_price']}}EGP
+                                    </p>
+                                </div>
+                                <div class="col-2">
+                                <a href = "/dash/cart/remove/{{$ci['id']}}" class="cart_delete_btn btn btn-sm btn-danger mdi mdi-trash-can"
+                                        data-target = "data_{{$ci['id']}}" data-price = "{{$ci['total']}}"title="Remove item">
+                                    </a>
+                                </div>
+                            </div>
+                        @endforeach
+                    @else
+                        <div class="p-2 text-center cart-empty">
+                            العربة فارغة
+                        </div>
+                    @endif
+                </div>
+            </li>
+        </ul>
         <!--<div class="nav-item avatar dropdown d-md-none d-clock">
             @if(session()->has('cart'))
                 @foreach(session('cart') as $ci)
@@ -80,24 +116,24 @@
           </button>
       
           <!-- Links -->
-          <div class="collapse navbar-collapse flex-row-" id="basicExampleNav">
+            <div class="collapse navbar-collapse flex-row-" id="basicExampleNav">
       
             <!-- Left -->
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
-                <a class="nav-link waves-effect" href="{{ url('/') }}" >الصفحة الرئيسية </a>
-              </li>
-              <li class="nav-item">
-              <a class="nav-link waves-effect" href="{{route('cart.all')}}">العربة </a>
-              </li>
-              @if(!Auth::guest())
-                @if(auth()->user()->admin == true)
+                <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                    <a class="nav-link waves-effect" href="{{route('orders.orders')}}">الطلبات </a>
+                    <a class="nav-link waves-effect" href="{{ url('/') }}" >الصفحة الرئيسية </a>
                     </li>
-                @endif
-              @endif
-            </ul>
+                    <li class="nav-item">
+                    <a class="nav-link waves-effect" href="{{route('cart.all')}}">العربة </a>
+                    </li>
+                    @if(!Auth::guest())
+                        @if(auth()->user()->admin == true)
+                            <li class="nav-item">
+                            <a class="nav-link waves-effect" href="{{route('orders.orders')}}">الطلبات </a>
+                            </li>
+                        @endif
+                    @endif
+                </ul>
       
             <!-- Right -->
             <ul class="navbar-nav nav-flex-icons">
@@ -118,14 +154,14 @@
                 <a style="font-size: 12px;font-weight: 500;" href="{{route('logout')}}" class="px-3 nav-link waves-effect white-text btn orange darken-4 btn-rounded btn-sm"
                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     تسجيل الخروج
-                  </a>
+                </a>
                 @endguest
-              </li>
+            </li>
             </ul>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
             </form>
-            <ul class="nav navbar-nav nav-flex-icons mr-0">
+            <ul class="nav navbar-nav nav-flex-icons mr-0 d-lg-inline d-none">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="badge red z-depth-1 mr-1" id="cart_item_qty">
@@ -147,7 +183,7 @@
                                         </p>
                                     </div>
                                     <div class="col-2">
-                                    <a href = "/dash/cart/remove/{{$ci['id']}}" class="cart_delete_btn btn btn-sm btn-primary"
+                                    <a href = "/dash/cart/remove/{{$ci['id']}}" class="cart_delete_btn btn btn-sm btn-danger mdi mdi-trash-can"
                                             data-target = "data_{{$ci['id']}}" data-price = "{{$ci['total']}}"title="Remove item">X
                                         </a>
                                     </div>

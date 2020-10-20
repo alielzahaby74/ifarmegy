@@ -7,7 +7,7 @@
                 @component('comps.errors') @endcomponent
 
                 <div class="card">
-                    <div class="card-header">إنشاء نوع</div>
+                    <div class="card-header">تعديل النوع</div>
                     <div class="card-body">
                         <form enctype="multipart/form-data" method="post"
                               action="{{ route('category.create') }}">
