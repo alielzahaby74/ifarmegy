@@ -108,17 +108,17 @@
             @endif
         </div>-->
     
-          <!-- Collapse button -->
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
-                  aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+        <!-- Collapse button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+                aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-          </button>
-      
-          <!-- Links -->
-            <div class="collapse navbar-collapse flex-row-" id="basicExampleNav">
-      
+        </button>
+        <div class="reorder w-100 d-flex">
+        <!-- Links -->
+        <div class="collapse navbar-collapse flex-row-" id="basicExampleNav">
+    
             <!-- Left -->
-                <ul class="navbar-nav ml-auto">
+                <ul class="navbar-nav ml-auto text-center">
                     <li class="nav-item">
                     <a class="nav-link waves-effect" href="{{ url('/') }}" >الصفحة الرئيسية </a>
                     </li>
@@ -132,35 +132,38 @@
                             </li>
                         @endif
                     @endif
-                </ul>
-      
-            <!-- Right -->
-            <ul class="navbar-nav nav-flex-icons">
-              <li class="nav-item">
-                @guest
-                <div class="d-flex flex-column align-items-center">
-
-                    <a style="font-size: 12px;font-weight: 500;" href="{{route('login')}}" class="px-3 nav-link waves-effect white-text btn orange darken-4 btn-rounded btn-sm">
-                        تسجيل الدخول
-                    </a>
-                    <a style="font-size: 12px;font-weight: 500;" href="{{route('register')}}" >
-                    
-                        ليس لديك حساب؟
-                    </a>
-                </div>
                 
-                @else
-                <a style="font-size: 12px;font-weight: 500;" href="{{route('logout')}}" class="px-3 nav-link waves-effect white-text btn orange darken-4 btn-rounded btn-sm"
-                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    تسجيل الخروج
-                </a>
-                @endguest
-            </li>
-            </ul>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                @csrf
-            </form>
-            <ul class="nav navbar-nav nav-flex-icons mr-0">
+                </ul>
+    
+            <!-- Right -->
+            
+        </div>
+                <ul class="navbar-nav nav-flex-icons text-center">
+                  <li class="nav-item">
+                    @guest
+                    <div class="d-flex flex-column align-items-center">
+    
+                        <a style="font-size: 12px;font-weight: 500;" href="{{route('login')}}" class="px-3 nav-link waves-effect white-text btn orange darken-4 btn-rounded btn-sm">
+                            تسجيل الدخول
+                        </a>
+                        <a style="font-size: 12px;font-weight: 500;" href="{{route('register')}}" >
+                        
+                            ليس لديك حساب؟
+                        </a>
+                    </div>
+                    
+                    @else
+                    <a style="font-size: 12px;font-weight: 500;" href="{{route('logout')}}" class="px-3 nav-link waves-effect white-text btn orange darken-4 btn-rounded btn-sm"
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        تسجيل الخروج
+                    </a>
+                    @endguest
+                </li>
+                </ul>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+        <ul class="nav navbar-nav nav-flex-icons mr-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="badge red z-depth-1 mr-1" id="cart_item_qty">
@@ -197,8 +200,7 @@
                 </li>
             </ul>
         </div>
-    
-        </div>
+    </div>
     
     </nav>
     
