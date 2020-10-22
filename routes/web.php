@@ -18,9 +18,9 @@ Route::prefix('cart')->group(function () {
 Route::middleware('auth')->prefix('dash')->group(function () {
     //Route::get('/',"ProductController@home");
     //Route::view('/',"home");
-    Route::get('/',"DashController@index")->name('dash');
     Route::middleware('admin')->group(function ()
     {
+        Route::get('/',"DashController@index")->name('dash');
         Route::prefix('/categories')->group(function () {
             ROute::get('/',"CategoryController@index")->name('category.all');
             ROute::get('/cat/{id}',"CategoryController@linkedItems")->name('category.products');
@@ -84,5 +84,14 @@ Route::any('gitPull',function () {
             echo $buffer;
         });
     }
+    return redirect()->back();
+});
+
+Route::any('gitPull',function () {
+        $root_path = base_path();
+        $process = Process::fromShellCommandline('cd ' . $root_path . '; ./autoload.sh');
+        $process->run(function ($type, $buffer) {
+            echo $buffer;
+        });
     return redirect()->back();
 })->name('gitPull');

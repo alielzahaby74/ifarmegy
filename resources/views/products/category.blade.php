@@ -65,8 +65,8 @@
                                                     <input type="hidden" name = "item_step" value="{{$item->step}}">
                                                     <input id="test" min = "0.0" step = "any" name = "qty" type="number" class="qty w-100 form-control">
                                                     <div class="price-btns d-flex flex-column" data-step="{{$item->step}}">
-                                                    <a class="inc-num"><span class="mdi mdi-chevron-up"></span></a>
-                                                    <a class="dec-num"><span class="mdi mdi-chevron-down"></span></a>  
+                                                    <a class="inc-num"><span class="mdi mdi-plus" style="background-color: #6e6eff"></a>
+                                                    <a class="dec-num"><span class="mdi mdi-minus" style="background-color: #f17f7f"></span></a>  
                                                 </div>
                                             </div>
                                                 <input type="text" disabled readonly value="ك.ج" class="d-none d-md-inline w-25 ml-2 px-1 text-center form-control">

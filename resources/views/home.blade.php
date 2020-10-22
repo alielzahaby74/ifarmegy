@@ -138,8 +138,8 @@
                       <div class="price-input">
                         <input id="test" type="number" min="0.0" step="any" class="qty w-100 form-control" name="qty">
                         <div class="price-btns d-flex flex-column" data-step="{{$item->step}}">
-                          <a class="inc-num"><span class="mdi mdi-chevron-up"></span></a>
-                          <a class="dec-num"><span class="mdi mdi-chevron-down"></span></a>  
+                          <a class="inc-num"><span class="mdi mdi-plus" style="background-color: #6e6eff"></span></a>
+                          <a class="dec-num"><span class="mdi mdi-minus" style="background-color: #f17f7f"></span></a>  
                         </div>
                       </div>
                       <input type="text" disabled readonly value="ك.ج" class="d-none d-md-inline w-25 px-1 text-center ml-2 form-control">
