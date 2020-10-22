@@ -62,7 +62,7 @@
                         <!--<p class="text-muted">Apple</p>-->
                       </td>
                       <td class="text-right"></td>
-                      <td class="text-right">جنية{{$ci['item_price']}}</td>
+                      <td class="text-right">{{$ci['item_price']}}جنية</td>
                       <td class="text-right">
                         <!--<span class="qty">{{$ci['qty']}}</span>-->
                         <div class="pb-0 w-50">
@@ -93,7 +93,7 @@
                         </div>-->
                       </td>
                       <td class="font-weight-bold text-right">
-                        <strong id = "item_{{$ci['id']}}_price">جنية{{$ci['total']}}</strong>
+                        <strong id = "item_{{$ci['id']}}_price">{{$ci['total']}}جنية</strong>
                       </td>
                       <td class="text-right">
                         <a href = "{{ route('cart.remove', $ci['id'])}}" class="cart_delete_btn btn btn-sm btn-primary"
@@ -119,7 +119,7 @@
                         </h4>
                     </td>
                     <td colspan="3" class="text-right">
-                        <a href = "{{route('cart.sendOrder')}}" type="button" class="btn btn-primary btn-rounded px-4">إكمال عملية الشراء
+                        <a href = "{{route('cart.sendOrder')}}" type="button" class="btn btn-primary btn-rounded px-4">اطلب الآن
                         <i class="fas fa-angle-right right"></i>
                         </a>
                     </td>

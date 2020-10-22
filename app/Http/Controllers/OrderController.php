@@ -35,6 +35,7 @@ class OrderController extends Controller
         $order = Order::where('id', $id);
         $user = User::where('id', $order->user_id);
         $user->num_of_buys++;
+        $user->total_cost_of_buy += $order->total_cost;
         $user->save();
         Order::destroy($id);
         return redirect()->route('orders.orders')
