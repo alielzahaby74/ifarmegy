@@ -15,32 +15,17 @@
         <div class="carousel-item active">
           <div class="view">
             <a href="">
-              <img class="d-block w-100" 
-              src="https://ebtikar-it.com/wp-content/uploads/2017/01/banner-web-design.png" alt="First slide">
+              <img class="d-block w-100" style="height: 400px" src="{{asset('slider.jpeg')}}" alt="First slide">
                 <div class="mask rgba-white-slight text-center d-flex align-items-center justify-content-center">
                   <div class="row">
                     <div class="col-12">
                     </div>
                   </div>
                 </div>
-                 </a>
+            </a>
           </div>
         </div>
-        <div class="carousel-item">
-          <div class="view">
-            <a href="">
-              <img class="d-block w-100" 
-              src="https://ebtikar-it.com/wp-content/uploads/2017/01/banner-web-design.png" alt="second slide">
-                <div class="mask rgba-white-slight text-center d-flex align-items-center justify-content-center">
-                  <div class="row">
-                    <div class="col-12">
-                    </div>
-                  </div>
-                </div>
-                 </a>
-          </div>
-        </div>
-     </div>
+      </div>
       <!-- Slides -->
       <!-- Controls -->
       <a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
@@ -126,6 +111,9 @@
         @endslot
         @slot('item_id')
             {{$item->id}}
+        @endslot
+        @slot('item_not_available')
+            {{$item->not_available}}
         @endslot
       @endcomponent
         </div>

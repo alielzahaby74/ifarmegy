@@ -14,7 +14,7 @@ class ProductAvailability extends Migration
     public function up()
     {
         Schema::table('products', function(Blueprint $table){
-            $table->boolean('not_available')->default(0);
+            $table->integer('not_available')->default(0);
         });
     }
 
