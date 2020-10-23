@@ -3,6 +3,7 @@
     <div class="card card-ecommerce">
       <!-- Card image -->
       <div class="view overlay">
+        
           <img style="width: 100%;height:150px;" src="{{asset($item_photo)}}" class="img-fluid" alt="">
         <a>
           <div class="mask rgba-white-slight"></div>

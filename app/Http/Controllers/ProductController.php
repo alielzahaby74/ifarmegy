@@ -51,7 +51,8 @@ class ProductController extends Controller
             "cat_id"=>"required",
             "item_unit"=>"required",
             "item_step"=>"required",
-            "item_photo"=>"required|mimes:jpg,jpeg,png"
+            "item_photo"=>"required|mimes:jpg,jpeg,png",
+            
         ]);
 
         $file  = Storage::disk('public')->putFileAs("product/", $request->file('item_photo'), time().".".$request->file('item_photo')->getClientOriginalName());
@@ -59,13 +60,19 @@ class ProductController extends Controller
         $url = "storage/$file";
         //dd($url, $file);
         // Storing into db
+        $not_available = 0;
+        if($request->has('not_available'))
+        {
+            $not_available = 1;
+        }
         Product::create([
             "name"=>$request->item_name,
             "price"=>$request->item_price,
             "unit"=>$request->item_unit,
             "step"=>$request->item_step,
             "photo"=>$url,
-            "category_id"=>$request->cat_id
+            "category_id"=>$request->cat_id,
+            "not_available" => $not_available,
         ]);
 
         // done storing
