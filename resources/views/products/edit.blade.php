@@ -45,6 +45,14 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>
+                                            غير متاح
+                                        </label>
+                                        <input name="not_available" @if($item->not_available) checked @endif type="checkbox" class="form-control-check">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
                                     <button class="btn btn-primary w-100">Save</button>
                                 </div>
 

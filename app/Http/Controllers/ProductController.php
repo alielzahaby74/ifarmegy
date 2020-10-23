@@ -102,6 +102,13 @@ class ProductController extends Controller
         $product->name = $request->item_name;
         $product->price = $request->item_price;
         $product->category_id = $request->cat_id;
+
+        $not_available = 0;
+        if($request->has('not_available'))
+        {
+            $not_available = 1;
+        }
+        $product->not_available = $not_available;
         if($request->has('item_photo'))
         {
             $file  = Storage::disk('public')->putFileAs("product/", $request->file('item_photo'), time().".".$request->file('item_photo')->getClientOriginalName());
