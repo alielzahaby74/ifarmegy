@@ -37,10 +37,10 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light white">
 
-        <div class="container flex-row"> 
-    
+        <div class="container flex-row">
+
         <a class="navbar-brand d-flex align-items-center flex-row-" href="/">
-        
+
         <img src="{{asset('logo.jpeg')}}" style="height: 50px">
         <span style="font-weight: 500;" class="ml-2 mt-1">IFarm</span>
         </a>
@@ -60,7 +60,7 @@
                         <div class="col-2">
                             <a class="cart_delete_btn btn btn-sm btn-danger mdi mdi-trash-can" data-target = "data_{{$ci['id']}}"
                             data-price = "{{$ci['total']}}" href = "">
-                    
+
                         </a>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
                 </div>
             @endif
         </div>-->
-    
+
         <!-- Collapse button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
                 aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -80,7 +80,7 @@
         <div class="reorder w-100 d-flex">
         <!-- Links -->
         <div class="collapse navbar-collapse flex-row-" id="basicExampleNav">
-    
+
             <!-- Left -->
                 <ul class="navbar-nav ml-auto text-center">
                     @if(!Auth::guest())
@@ -111,26 +111,26 @@
                             </li>
                         @endif
                     @endif
-                
+
                 </ul>
-    
+
             <!-- Right -->
-            
+
         </div>
                 <ul class="navbar-nav nav-flex-icons text-center">
                   <li class="nav-item">
                     @guest
                     <div class="d-flex flex-column align-items-center">
-    
+
                         <a style="font-size: 12px;font-weight: 500;" href="{{route('login')}}" class="px-3 nav-link waves-effect white-text btn orange darken-4 btn-rounded btn-sm">
                             تسجيل الدخول
                         </a>
                         <a style="font-size: 12px;font-weight: 500;" href="{{route('register')}}" >
-                        
+
                             ليس لديك حساب؟
                         </a>
                     </div>
-                    
+
                     @else
                     <a style="font-size: 12px;font-weight: 500;" href="{{route('logout')}}" class="px-3 nav-link waves-effect white-text btn orange darken-4 btn-rounded btn-sm"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -146,7 +146,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="badge red z-depth-1 mr-1" id="cart_item_qty">
-                            {{session()->has('cart') ? count(session('cart')) : 0}} 
+                            {{session()->has('cart') ? count(session('cart')) : 0}}
                         </span>
                         <i id="navbar-static-cart " alt="Cart" class="fas fa-shopping-cart"></i>
                     </a>
@@ -176,7 +176,7 @@
                             </div>
                         @endif
                     </div>
-                    
+
                 </li>
                 <li class="nav-item dropdown d-lg-none d-inline">
                     <a class="nav-link waves-effect dropdown-toggle" data-toggle="dropdown">الأنواع</a>
@@ -189,12 +189,12 @@
             </ul>
         </div>
     </div>
-    
+
     </nav>
-    
-    <main class="py-4">
+
+    <main class="pt-4">
         @yield('content')
-        
+
     </main>
 </div>
 <!-- Scripts -->
@@ -214,10 +214,10 @@
     @endif
 </script>
 <script>
-    
+
     $(document).on('click', '.cart_delete_btn', function(e){
             e.preventDefault();
-            
+
         //console.log($(this).data('target'));
         let class_name = "." + $(this).data('target');
         let item_price = $(this).data('price');
