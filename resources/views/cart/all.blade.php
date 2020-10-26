@@ -51,51 +51,43 @@
 
                     <!-- First row -->
                     <tr class = "data_{{$ci['id']}}">
-                      <th class="text-right" scope="row">
+                      <th class="text-right align-middle" scope="row">
                         <img src="{{$ci['photo']}}" alt=""
-                          class="img-fluid z-depth-0" style="height: 100px">
+                          class="img-fluid z-depth-0" style="height: 100px; width: 150px;">
                       </th>
-                      <td class="text-right">
+                      <td class="text-right align-middle">
                         <h5 class="mt-3">
                           <strong>{{$ci['name']}}</strong>
                         </h5>
                         <!--<p class="text-muted">Apple</p>-->
                       </td>
-                      <td class="text-right"></td>
-                      <td class="text-right">{{$ci['item_price']}}جنية</td>
-                      <td class="text-right">
+                      <td class="text-right align-middle"></td>
+                      <td class="text-right align-middle">{{$ci['item_price']}}جنية</td>
+                      <td class="text-right align-middle">
                         <!--<span class="qty">{{$ci['qty']}}</span>-->
-                        <div class="pb-0 w-50">
-                          <div class="mb-0 d-flex flex-row align-items-center">
-                            <div class="price-input">
-                              <form method = "POST" class="addToCartForm" 
-                              action="{{route('cart.add')}}" id="from{{$ci['id']}}" data-total = "{{$ci['total']}}">
-                              @csrf
-                                  <input type="hidden" name = "item_id" value="{{$ci['id']}}">
-                                  <input id="test" min = "0.0" step = "any" name = "qty" type="number" class="qty w-100 form-control">
-                            <div class="price-btns d-flex flex-column" data-step="{{$ci['step']}}">
-                                  <a class="inc-num"><span class="mdi mdi-chevron-up"></span></a>
-                                  <a class="dec-num"><span class="mdi mdi-chevron-down"></span></a>  
-                              </div>
-                          </div>
-                              <button class="btn btn-primary btn-sm py-1 px-2"><span class="mdi mdi-cart-plus mdi-24px" style="margin-left: 10px"></span></button>
-                              </form>
+                          <div class="pb-0 w-50">
+                            <div class="mb-0 d-flex flex-row align-items-center">
+                              <div class="price-input">
+                                <form method = "POST" class="addToCartForm"  style="min-width: 75px;"
+                                action="{{route('cart.add')}}" id="from{{$ci['id']}}" data-total = "{{$ci['total']}}">
+                                @csrf
+                                    <input type="hidden" name = "item_id" value="{{$ci['id']}}">
+                                    <input id="test" min = "0.0" step = "any" name = "qty" type="number" class="qty w-100 form-control">
+                                  <div class="price-btns d-flex flex-column" data-step="{{$ci['step']}}">
+                                    <a class="inc-num"><span class="mdi mdi-chevron-up"></span></a>
+                                    <a class="dec-num"><span class="mdi mdi-chevron-down"></span></a>  
+                                  </div>
+                                </div>
+                                  <button class="btn btn-primary btn-sm py-1 px-2" style="min-width: 35px;"><span class="mdi mdi-cart-plus mdi-24px" style="margin-left: 10px"></span></button>
+                                </form>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                        <!--<div class="btn-group radio-group ml-2" data-toggle="buttons">
-                          <label class="btn btn-sm btn-primary btn-rounded">
-                            <input type="radio" name="options" id="option1">&mdash;
-                          </label>
-                          <label class="btn btn-sm btn-primary btn-rounded">
-                            <input type="radio" name="options" id="option2">+
-                          </label>
-                        </div>-->
                       </td>
-                      <td class="font-weight-bold text-right">
+                      <td class="font-weight-bold text-right align-middle">
                         <strong id = "item_{{$ci['id']}}_price">{{$ci['total']}}جنية</strong>
                       </td>
-                      <td class="text-right">
+                      <td class="text-right align-middle">
                         <a href = "{{ route('cart.remove', $ci['id'])}}" class="cart_delete_btn btn btn-sm btn-primary"
                         data-target = "data_{{$ci['id']}}" data-price = "{{$ci['total']}}"title="Remove item">X
                       </a>
@@ -104,6 +96,40 @@
                     <!-- First row -->
 
                     @endforeach
+                  <tr>
+                    <td colspan = "4" class="text-right">
+                      <h4 class="mt-2">
+                        <h2 class="d-flex align-items-center">
+                          <span class="mdi mdi-cash-usd-outline mr-2"></span>
+                          <span>طريقة الدفع</span>
+                        </h2>
+                      <input type="radio" name="payment_method" value="visa">
+                      <h5 style="display: inline;"><label>Visa</label></h5>
+                        <img src="{{asset('visa.svg')}}" style="height: 50px">
+                        <span>*يتم إيصال عامل التوصيل بماكينة الفيزا*</span>
+                        <br>
+                        <input type="radio" name="payment_method" value="cash">
+                        <h5 style="display: inline;"><label>Cash</label></h5>
+                        <img src="{{asset('cash-payment.svg')}}" style="height: 50px">
+                      </h4>
+                    </td>
+                    <td colspan="4"></td>
+                    <td colspan="4" class="text-right">
+                      <!--<h4 class="mt-2">
+                        <h2 class="d-flex align-items-center">
+                          <span class="mdi mdi-timer-outline mr-2"></span>
+                          <span>ميعاد التوصيل</span>
+                        </h2>
+                      <input type="radio" name="payment_method">
+                      <h5 style="display: inline;"><label> الميعاد الصباحي(1 - 9) ظهرا</label></h5>
+                        <img src="{{asset('sunrise.svg')}}" style="height: 50px">
+                        <br>
+                        <input type="radio" name="payment_method">
+                        <h5 style="display: inline;"><label>الميعاد المسائي</label></h5>
+                        <img src="{{asset('mountain.svg')}}" style="height: 50px">
+                      </h4>-->
+                    </td>
+                  </tr>
                 <!-- Fourth row -->
                 <tr>
                     <td colspan="3"></td>
@@ -118,16 +144,25 @@
                           <span> جنية </span>
                         </h4>
                     </td>
+                    
+                    
                     <td colspan="3" class="text-right">
-                        <a href = "{{route('cart.sendOrder')}}" type="button" class="btn btn-primary btn-rounded px-4">اطلب الآن
+                      <a href = "{{route('order.sendOrder')}}" type="button" class="btn btn-primary btn-rounded px-4">اطلب الآن
                         <i class="fas fa-angle-right right"></i>
-                        </a>
+                      </a>
                     </td>
-                    </tr>
-                    <!-- Fourth row -->
+                    <br>
+                    
+                  </tr>
+                  <!--<tr>
+                    <td colspan="3"></td>
+                    <td colspan="3" class="text-right"><h4>+ التوصيل 20-30 ج</h4></td>
+                    
+                  </tr>-->
+                  <!-- Fourth row -->
                 </tbody>
                 <!-- Table body -->
-            </table>
+              </table>
             </div>
             <!-- Shopping Cart table -->
             </section>

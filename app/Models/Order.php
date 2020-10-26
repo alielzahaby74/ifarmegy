@@ -1,13 +1,13 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
 
-    protected $fillable = ['title', 'description', 'user_name', 'user_id', 'total_cost', 'user_address', 'phone_number'];
+    protected $fillable = ['title', 'description', 'user_name', 'user_id', 'total_cost', 'user_address', 'phone_number', 'payment_method'];
 
     public function user()
     {

@@ -37,8 +37,8 @@
         <form method = "POST" class="addToCartForm"
           action="{{route('cart.add')}}" id="from{{$item->id}}" >
           @csrf
-          <input type="hidden" name = "item->id" value="{{$item->id}}">
-          <input type="hidden" name = "item->step" value="{{$item->step}}">
+          <input type="hidden" name = "item_id" value="{{$item->id}}">
+          <input type="hidden" name = "item_step" value="{{$item->step}}">
           <div class="pb-0">
             <div class="mb-0 d-flex flex-row align-items-center">
               <div class="price-input">

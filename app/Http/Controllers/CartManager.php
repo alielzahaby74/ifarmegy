@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use App\Order;
-use App\Order_item;
+
 use Illuminate\Http\Client\Request as ClientRequest;
 use Illuminate\Http\Request;
 use App\User;
@@ -63,7 +62,8 @@ class CartManager extends Controller
                 "qty"=> (float) $request->qty,
                 "step" => (float) $request->item_step,
                 "photo"=>asset($item->photo),
-                "total"=>$item->price*$request->qty
+                "total"=>$item->price*$request->qty,
+                "not_available"=>$item->not_available,
             ];
             session()->push('cart', $cart_item_obj);
             return $cart_item_obj+['isNew'=>0];
@@ -98,39 +98,5 @@ class CartManager extends Controller
         return redirect()->back();
     }
 
-    public function sendOrder(Request $request)
-    {
-        $user = auth()->user();
-        /*
-        $user->num_of_buys++;
-        $user->save();
-        */ 
-        $total_cost = 0;
-        $order = Order::create([
-            'title' => 'New Order',
-            'description' => '',
-            'user_id' => $user->id,
-            'user_name' => $user->name,
-            'user_address' => $user->address,
-            'phone_number' => $user->phone_number
-        ]);
-        foreach(session('cart') as $item)
-        {
-            $total_cost += $item['total'];
-            Order_item::create([
-                'user_id' => $user->id,
-                'order_id'=> $order->id,
-                'item_id' => $item['id'],
-                'qty' => $item['qty'],
-                'item_name' => $item['name'],
-                'item_price' => $item['item_price'],
-                'item_total' => $item['total']
-            ]);
-        }
-        $order->total_cost = $total_cost;
-        $order->save();
-        $request->session()->forget('cart');
-        return redirect()->route('dash')
-        ->with(['status'=>true,"type"=>"success","msg"=>"your order has been sent!","msg2"=>"", 'user' => $user]);
-    }
+    
 }

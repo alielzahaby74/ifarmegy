@@ -4,7 +4,7 @@ use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\Process\Process;
 
-Route::get('/',"ProductController@home");
+Route::get('/',"ProductController@home")->name('home');
 Route::prefix('product')->group(function (){
     Route::get('/cat/{id}', "ProductController@getCatList")->name('products.getList');
     Route::view('/cat/list', 'products.category');
@@ -62,7 +62,9 @@ Route::middleware('auth')->prefix('dash')->group(function () {
 
             Route::get('/delete/{id}', 'OrderController@delete')->name('order.delete');
             Route::get('/complete/{id}', 'OrderController@completeOrder')->name('order.complete');
+            
         });
+        Route::get("/sendOrder", "OrderController@sendOrder")->name('order.sendOrder');
     });
 
     Route::prefix('cart')->group(function () {
@@ -70,7 +72,6 @@ Route::middleware('auth')->prefix('dash')->group(function () {
         Route::post("/add","CartManager@add")->name('cart.add');
         Route::get("/remove/{id}","CartManager@remove")->name('cart.remove');*/
         Route::get("/delete","CartManager@delete")->name('cart.delete');
-        Route::get("/sendOrder", "CartManager@sendOrder")->name('cart.sendOrder');
     });
 
 });

@@ -26,8 +26,9 @@
                     <th scope="col">العنوان</th>
                     <th scope="col">رقم الهاتف</th>
                     <th scope="col">المبلغ</th>
-                    <th scope="col">الحالة</th>
-                    <th scope="col"></th>
+                    <th scope="col">التاريخ</th>
+                    <th scope="col">طريقة الدفع</th>
+                    <th scope="col">العمليات</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -38,8 +39,10 @@
                     <td>{{$order->user_address}}</td>
                     <td>{{$order->phone_number}}</td>
                     <td>{{$order->total_cost}}</td>
+                    <td>{{$order->created_at}}</td>
+                    <td>{{$order->payment_method}}</td>
                     <td class="pt-2 pb-0">
-                        <a href = "{{route('orders.order', $order->id)}}">
+                      <a href = "{{route('orders.order', $order->id)}}">
                             <i class="fas fa-eye" style="color:blue;font-size: 45px;"></i>
                         </a>
                         <a href="{{route('order.complete', $order->id)}}">
@@ -49,6 +52,7 @@
                             <i class="fas fa-times-circle"style="color:red;font-size: 45px;"></i>
                         </a>
                     </td>
+                    
                   </tr>
                   @endforeach
                 </tbody>
