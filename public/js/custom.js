@@ -180,8 +180,8 @@ $(document).ready(function(e){
                             </div>
                             `);
                 } else {
-
                     $("#item_qty_" + res.id).html(res.qty);
+                    $("#item_cart_qty_" + res.id).text(res.qty);
                 }
                 //updating the table column
                 console.log(res.id);

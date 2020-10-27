@@ -62,11 +62,12 @@
                         <!--<p class="text-muted">Apple</p>-->
                       </td>
                       <td class="text-right align-middle"></td>
-                      <td class="text-right align-middle">{{$ci['item_price']}}جنية</td>
+                      <td class="text-right align-middle" style="font-weight: bold">{{$ci['item_price']}}جنية</td>
                       <td class="text-right align-middle">
                         <!--<span class="qty">{{$ci['qty']}}</span>-->
                           <div class="pb-0 w-50">
                             <div class="mb-0 d-flex flex-row align-items-center">
+                              <strong class="mx-2" style="font-weight: bold" id = "item_cart_qty_{{$ci['id']}}">{{$ci['qty']}}</strong>
                               <div class="price-input">
                                 <form method = "POST" class="addToCartForm"  style="min-width: 75px;"
                                 action="{{route('cart.add')}}" id="from{{$ci['id']}}" data-total = "{{$ci['total']}}">
@@ -85,7 +86,7 @@
                         </div>
                       </td>
                       <td class="font-weight-bold text-right align-middle">
-                        <strong id = "item_{{$ci['id']}}_price">{{$ci['total']}}جنية</strong>
+                        <strong style="font-weight: bold" id = "item_{{$ci['id']}}_price">{{$ci['total']}}جنية</strong>
                       </td>
                       <td class="text-right align-middle">
                         <a href = "{{ route('cart.remove', $ci['id'])}}" class="cart_delete_btn btn btn-sm btn-primary"

@@ -44,33 +44,6 @@
         <img src="{{asset('logo.jpeg')}}" style="height: 50px">
         <span style="font-weight: 500;" class="ml-2 mt-1">IFarm</span>
         </a>
-        <!--<div class="nav-item avatar dropdown d-md-none d-clock">
-            @if(session()->has('cart'))
-                @foreach(session('cart') as $ci)
-                    <div class="row px-2 d-flex align-items-center justify-content-between data_{{$ci['id']}}" id = "data_{{$ci['id']}}">
-                        <div class="col-3">
-                            <img class="img-fluid" src="{{$ci['photo']}}" alt="">
-                        </div>
-                        <div class="col-7">
-                            <p style="line-height: 20px;font-size: 15px" class="mb-0">
-                                <b>{{$ci['name']}}</b> <br>
-                            <span id="item_qty_{{$ci['id']}}">{{$ci['qty']}}</span>x{{$ci['item_price']}}EGP
-                            </p>
-                        </div>
-                        <div class="col-2">
-                            <a class="cart_delete_btn btn btn-sm btn-danger mdi mdi-trash-can" data-target = "data_{{$ci['id']}}"
-                            data-price = "{{$ci['total']}}" href = "">
-
-                        </a>
-                        </div>
-                    </div>
-                @endforeach
-            @else
-                <div class="p-2 text-center cart-empty">
-                    No Items
-                </div>
-            @endif
-        </div>-->
 
         <!-- Collapse button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
